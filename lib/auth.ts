@@ -3,7 +3,7 @@ import { connectDB } from './db';
 import { mongodbAdapter } from '@better-auth/mongo-adapter';
 import mongoose from 'mongoose';
 
-let authInstance = null;
+let authInstance: any = null;
 
 export async function getAuth() {
   if (authInstance) return authInstance;
@@ -11,7 +11,7 @@ export async function getAuth() {
   await connectDB();
 
   authInstance = betterAuth({
-    database: mongodbAdapter(mongoose.connection.getClient().db()),
+    database: mongodbAdapter(mongoose.connection.getClient().db() as any),
     emailAndPassword: {
       enabled: true,
     },

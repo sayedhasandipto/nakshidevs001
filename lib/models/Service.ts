@@ -1,6 +1,22 @@
-import mongoose from 'mongoose';
+import mongoose, { Document, Model } from 'mongoose';
 
-const serviceSchema = new mongoose.Schema(
+export interface IService extends Document {
+  title: string;
+  description: string;
+  category: 'government' | 'business' | 'healthcare' | 'education' | 'finance' | 'legal' | 'technical' | 'other';
+  price: number;
+  duration?: string;
+  image?: string;
+  features?: string[];
+  providerId: mongoose.Types.ObjectId;
+  rating?: number;
+  reviews?: number;
+  active?: boolean;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+const serviceSchema = new mongoose.Schema<IService>(
   {
     title: {
       type: String,
@@ -57,4 +73,5 @@ const serviceSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-export default mongoose.models.Service || mongoose.model('Service', serviceSchema);
+const Service: Model<IService> = mongoose.models.Service || mongoose.model<IService>('Service', serviceSchema);
+export default Service;

@@ -1,6 +1,22 @@
-import mongoose from 'mongoose';
+import mongoose, { Document, Model } from 'mongoose';
 
-const orderSchema = new mongoose.Schema(
+export interface IOrder extends Document {
+  serviceId: mongoose.Types.ObjectId;
+  clientId: mongoose.Types.ObjectId;
+  providerId: mongoose.Types.ObjectId;
+  amount: number;
+  status: 'pending' | 'accepted' | 'in-progress' | 'completed' | 'cancelled';
+  paymentStatus: 'unpaid' | 'pending' | 'paid' | 'failed';
+  description?: string;
+  deliverables?: string[];
+  startDate?: Date;
+  completionDate?: Date;
+  notes?: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+const orderSchema = new mongoose.Schema<IOrder>(
   {
     serviceId: {
       type: mongoose.Schema.Types.ObjectId,
@@ -40,4 +56,5 @@ const orderSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-export default mongoose.models.Order || mongoose.model('Order', orderSchema);
+const Order: Model<IOrder> = mongoose.models.Order || mongoose.model<IOrder>('Order', orderSchema);
+export default Order;

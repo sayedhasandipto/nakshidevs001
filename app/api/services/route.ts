@@ -1,16 +1,17 @@
 import { connectDB } from '@/lib/db';
 import Service from '@/lib/models/Service';
+import { NextRequest, NextResponse } from 'next/server';
 
-export async function GET(request) {
+export async function GET(request: NextRequest) {
   try {
     await connectDB();
 
     const { searchParams } = new URL(request.url);
     const category = searchParams.get('category');
-    const limit = parseInt(searchParams.get('limit')) || 20;
-    const skip = parseInt(searchParams.get('skip')) || 0;
+    const limit = parseInt(searchParams.get('limit') || '20');
+    const skip = parseInt(searchParams.get('skip') || '0');
 
-    let query = { active: true };
+    let query: any = { active: true };
 
     if (category && category !== 'all') {
       query.category = category;
@@ -23,7 +24,7 @@ export async function GET(request) {
 
     const total = await Service.countDocuments(query);
 
-    return Response.json(
+    return NextResponse.json(
       {
         services,
         total,
@@ -33,11 +34,11 @@ export async function GET(request) {
     );
   } catch (error) {
     console.error('Error fetching services:', error);
-    return Response.json({ error: 'Failed to fetch services' }, { status: 500 });
+    return NextResponse.json({ error: 'Failed to fetch services' }, { status: 500 });
   }
 }
 
-export async function POST(request) {
+export async function POST(request: NextRequest) {
   try {
     await connectDB();
 
@@ -52,7 +53,7 @@ export async function POST(request) {
       !price ||
       !providerId
     ) {
-      return Response.json(
+      return NextResponse.json(
         { error: 'Missing required fields' },
         { status: 400 }
       );
@@ -70,12 +71,12 @@ export async function POST(request) {
 
     await service.save();
 
-    return Response.json(
+    return NextResponse.json(
       { service, message: 'Service created successfully' },
       { status: 201 }
     );
   } catch (error) {
     console.error('Error creating service:', error);
-    return Response.json({ error: 'Failed to create service' }, { status: 500 });
+    return NextResponse.json({ error: 'Failed to create service' }, { status: 500 });
   }
 }

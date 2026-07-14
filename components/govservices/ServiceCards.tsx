@@ -3,7 +3,7 @@
 import { useState } from 'react';
 
 export default function ServiceCards() {
-  const [hoveredCard, setHoveredCard] = useState(null);
+  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 
   const services = [
     {
@@ -75,7 +75,7 @@ export default function ServiceCards() {
               {services[0].description}
             </p>
             <ul className="mb-6 grid grid-cols-1 sm:grid-cols-2 gap-2 text-on-surface-variant text-label-lg">
-              {services[0].features.map((feature, idx) => (
+              {services[0].features?.map((feature, idx) => (
                 <li key={idx} className="flex items-center gap-2">
                   <span className="material-symbols-outlined text-secondary" style={{ fontSize: '20px', fontVariationSettings: "'FILL' 1" }}>check_circle</span>
                   {feature}

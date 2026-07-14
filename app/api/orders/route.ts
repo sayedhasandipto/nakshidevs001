@@ -1,8 +1,9 @@
 import { connectDB } from '@/lib/db';
 import Order from '@/lib/models/Order';
 import Service from '@/lib/models/Service';
+import { NextRequest, NextResponse } from 'next/server';
 
-export async function GET(request) {
+export async function GET(request: NextRequest) {
   try {
     await connectDB();
 
@@ -12,13 +13,13 @@ export async function GET(request) {
     const status = searchParams.get('status');
 
     if (!userId) {
-      return Response.json(
+      return NextResponse.json(
         { error: 'userId is required' },
         { status: 400 }
       );
     }
 
-    let query = {};
+    let query: any = {};
 
     if (role === 'client') {
       query.clientId = userId;
@@ -36,14 +37,14 @@ export async function GET(request) {
       .populate('providerId', 'name email phone')
       .sort({ createdAt: -1 });
 
-    return Response.json({ orders }, { status: 200 });
+    return NextResponse.json({ orders }, { status: 200 });
   } catch (error) {
     console.error('Error fetching orders:', error);
-    return Response.json({ error: 'Failed to fetch orders' }, { status: 500 });
+    return NextResponse.json({ error: 'Failed to fetch orders' }, { status: 500 });
   }
 }
 
-export async function POST(request) {
+export async function POST(request: NextRequest) {
   try {
     await connectDB();
 
@@ -51,7 +52,7 @@ export async function POST(request) {
     const { serviceId, clientId, providerId, description, deliverables } = body;
 
     if (!serviceId || !clientId || !providerId) {
-      return Response.json(
+      return NextResponse.json(
         { error: 'Missing required fields' },
         { status: 400 }
       );
@@ -60,7 +61,7 @@ export async function POST(request) {
     // Get service to fetch price
     const service = await Service.findById(serviceId);
     if (!service) {
-      return Response.json({ error: 'Service not found' }, { status: 404 });
+      return NextResponse.json({ error: 'Service not found' }, { status: 404 });
     }
 
     const order = new Order({
@@ -76,12 +77,12 @@ export async function POST(request) {
 
     await order.save();
 
-    return Response.json(
+    return NextResponse.json(
       { order, message: 'Order created successfully' },
       { status: 201 }
     );
   } catch (error) {
     console.error('Error creating order:', error);
-    return Response.json({ error: 'Failed to create order' }, { status: 500 });
+    return NextResponse.json({ error: 'Failed to create order' }, { status: 500 });
   }
 }
