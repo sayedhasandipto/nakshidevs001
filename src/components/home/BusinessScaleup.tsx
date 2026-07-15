@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 export default function BusinessScaleup() {
   return (
     <section className="bg-[#002045] py-16 px-6 overflow-hidden relative">
@@ -26,9 +28,11 @@ export default function BusinessScaleup() {
             </li>
           </ul>
           <div className="flex flex-wrap gap-4 pt-4">
-            <button className="px-6 py-3 bg-[#0a6c44] text-white rounded-xl font-semibold hover:brightness-110 shadow-lg" style={{ fontFamily: 'Hind Siliguri, sans-serif' }}>
-              প্যাকেজগুলো দেখুন
-            </button>
+            <Link href="/business-solutions">
+              <button className="px-6 py-3 bg-[#0a6c44] text-white rounded-xl font-semibold hover:brightness-110 shadow-lg" style={{ fontFamily: 'Hind Siliguri, sans-serif' }}>
+                প্যাকেজগুলো দেখুন
+              </button>
+            </Link>
             <button className="px-6 py-3 border-2 border-white/30 text-white rounded-xl font-semibold hover:bg-white/10 transition-all" style={{ fontFamily: 'Hind Siliguri, sans-serif' }}>
               ফ্রি কনসালটেশন
             </button>

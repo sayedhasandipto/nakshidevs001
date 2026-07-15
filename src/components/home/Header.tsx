@@ -19,8 +19,8 @@ export default function Header() {
         <nav className="hidden lg:flex items-center gap-8">
           <Link className="text-sm font-medium text-gray-600 hover:text-[#002045] transition-colors" href="/">Home</Link>
           <Link className="text-sm font-medium text-gray-600 hover:text-[#002045] transition-colors" href="/gov-services">Gov Services</Link>
-          <Link className="text-sm font-medium text-gray-600 hover:text-[#002045] transition-colors" href="#business">Business Solutions</Link>
-          <Link className="text-sm font-medium text-gray-600 hover:text-[#002045] transition-colors" href="#webdev">Web Dev</Link>
+          <Link className="text-sm font-medium text-gray-600 hover:text-[#002045] transition-colors" href="/business-solutions">Business Solutions</Link>
+          <Link className="text-sm font-medium text-gray-600 hover:text-[#002045] transition-colors" href="/web-dev">Web Dev</Link>
           <Link className="text-sm font-medium text-gray-600 hover:text-[#002045] transition-colors" href="#about">About</Link>
         </nav>
 
@@ -68,14 +68,14 @@ export default function Header() {
           </Link>
           <Link
             className="text-sm font-medium text-gray-600 hover:text-[#002045]"
-            href="#business"
+            href="/business-solutions"
             onClick={() => setMobileMenuOpen(false)}
           >
             Business Solutions
           </Link>
           <Link
             className="text-sm font-medium text-gray-600 hover:text-[#002045]"
-            href="#webdev"
+            href="/web-dev"
             onClick={() => setMobileMenuOpen(false)}
           >
             Web Dev

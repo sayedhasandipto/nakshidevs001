@@ -37,7 +37,7 @@ export default function CategoriesGrid() {
           </div>
           <h3 className="text-xl font-bold text-[#002045] mb-3" style={{ fontFamily: 'Hind Siliguri, sans-serif' }}>ব্যবসায়িক সেবা</h3>
           <p className="text-gray-600 mb-4" style={{ fontFamily: 'Hind Siliguri, sans-serif' }}>ট্রেড লাইসেন্স, টিআইএন এবং ভ্যাট সংক্রান্ত সকল সমাধান।</p>
-          <a className="text-[#0a6c44] inline-flex items-center gap-2 font-semibold hover:gap-3 transition-all" href="#" style={{ fontFamily: 'Hind Siliguri, sans-serif' }}>
+          <a className="text-[#0a6c44] inline-flex items-center gap-2 font-semibold hover:gap-3 transition-all" href="/business-solutions" style={{ fontFamily: 'Hind Siliguri, sans-serif' }}>
             শুরু করুন <span className="material-symbols-outlined text-lg">chevron_right</span>
           </a>
         </div>
@@ -49,7 +49,7 @@ export default function CategoriesGrid() {
           </div>
           <h3 className="text-xl font-bold text-[#002045] mb-3" style={{ fontFamily: 'Hind Siliguri, sans-serif' }}>ওয়েবসাইট ডেভেলপমেন্ট</h3>
           <p className="text-gray-600 mb-4" style={{ fontFamily: 'Hind Siliguri, sans-serif' }}>আপনার ব্যবসার জন্য আধুনিক ও দ্রুত ওয়েবসাইট।</p>
-          <a className="text-[#002045] inline-flex items-center gap-2 font-semibold hover:gap-3 transition-all" href="#" style={{ fontFamily: 'Hind Siliguri, sans-serif' }}>
+          <a className="text-[#002045] inline-flex items-center gap-2 font-semibold hover:gap-3 transition-all" href="/web-dev" style={{ fontFamily: 'Hind Siliguri, sans-serif' }}>
             বিস্তারিত <span className="material-symbols-outlined text-lg">chevron_right</span>
           </a>
         </div>
