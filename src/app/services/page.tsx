@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import Navigation from '@/components/Navigation';
+import Navigation from '@/components/layout/Navbar';
 import Link from 'next/link';
 
 export default function ServicesPage() {

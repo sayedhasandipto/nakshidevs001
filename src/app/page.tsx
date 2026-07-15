@@ -4,7 +4,7 @@ import StatsCounter from '@/components/home/StatsCounter';
 import CategoriesGrid from '@/components/home/CategoriesGrid';
 import BusinessScaleup from '@/components/home/BusinessScaleup';
 import TrustIndicators from '@/components/home/TrustIndicators';
-import Footer from '@/components/home/Footer';
+import Footer from '@/components/layout/Footer';
 
 export const metadata = {
   title: 'GovService BD | আপনার প্রয়োজনীয় সকল অনলাইন সেবা',

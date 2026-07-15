@@ -2,7 +2,7 @@ import Header from '@/components/home/Header';
 import GovServicesHero from '@/components/gov-services/GovServicesHero';
 import ServiceGrid from '@/components/gov-services/ServiceGrid';
 import ProcessSection from '@/components/gov-services/ProcessSection';
-import Footer from '@/components/home/Footer';
+import Footer from '@/components/layout/Footer';
 
 export const metadata = {
   title: 'নাগরিক সেবা ডিরেক্টরি | GovService BD',
