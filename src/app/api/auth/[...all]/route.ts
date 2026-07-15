@@ -1,12 +1,7 @@
-import { getAuth } from '@/lib/auth';
-import { NextRequest } from 'next/server';
+import { auth } from '@/lib/auth';
+import { toNextJsHandler } from 'better-auth/next-js';
 
-export async function GET(request: NextRequest) {
-  const auth = await getAuth();
-  return auth.handler(request);
-}
-
-export async function POST(request: NextRequest) {
-  const auth = await getAuth();
-  return auth.handler(request);
-}
+// Better Auth's toNextJsHandler creates properly typed GET and POST handlers
+// that cover ALL auth endpoints:  /api/auth/sign-in, /api/auth/sign-up,
+// /api/auth/sign-out, /api/auth/get-session, etc.
+export const { GET, POST } = toNextJsHandler(auth);
