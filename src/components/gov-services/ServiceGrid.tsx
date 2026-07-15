@@ -1,6 +1,6 @@
 export default function ServiceGrid() {
   return (
-    <section className="max-w-5xl mx-auto px-6 py-12">
+    <section className="max-w-6xl mx-auto px-6 py-12">
       <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
         {/* Service 1: Birth Registration */}
         <div className="md:col-span-8 group relative overflow-hidden rounded-xl border border-gray-200 bg-white p-8 transition-all hover:shadow-lg">
@@ -9,13 +9,13 @@ export default function ServiceGrid() {
               <span className="material-symbols-outlined text-4xl">child_care</span>
             </div>
             <div>
-              <h3 
+              <h3
                 className="text-2xl font-bold text-[#002045] mb-3"
                 style={{ fontFamily: 'Hind Siliguri, sans-serif' }}
               >
                 জন্ম নিবন্ধন (আবেদন ও সংশোধন)
               </h3>
-              <p 
+              <p
                 className="text-gray-600 mb-6"
                 style={{ fontFamily: 'Hind Siliguri, sans-serif' }}
               >
@@ -39,7 +39,7 @@ export default function ServiceGrid() {
                   ডিজিটাল কপি ডাউনলোড
                 </li>
               </ul>
-              <button 
+              <button
                 className="bg-[#002045] text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-800 transition-all flex items-center gap-2"
                 style={{ fontFamily: 'Hind Siliguri, sans-serif' }}
               >
@@ -55,20 +55,20 @@ export default function ServiceGrid() {
             <div className="w-16 h-16 rounded-lg bg-white flex items-center justify-center text-[#002045] mb-6">
               <span className="material-symbols-outlined text-4xl">how_to_reg</span>
             </div>
-            <h3 
+            <h3
               className="text-2xl font-bold text-[#002045] mb-3"
               style={{ fontFamily: 'Hind Siliguri, sans-serif' }}
             >
               ভোটার আইডি কার্ড
             </h3>
-            <p 
+            <p
               className="text-gray-600 mb-6"
               style={{ fontFamily: 'Hind Siliguri, sans-serif' }}
             >
               নতুন ভোটার হিসেবে নিবন্ধন করুন বা জাতীয় পরিচয়পত্রের ভুল সংশোধন করুন। স্মার্ট কার্ডের স্ট্যাটাস চেক করুন।
             </p>
             <div className="mt-auto">
-              <button 
+              <button
                 className="w-full bg-[#0a6c44] text-white px-6 py-3 rounded-lg font-semibold hover:opacity-90 transition-all"
                 style={{ fontFamily: 'Hind Siliguri, sans-serif' }}
               >
@@ -84,20 +84,20 @@ export default function ServiceGrid() {
             <div className="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center text-[#0a6c44]">
               <span className="material-symbols-outlined">payments</span>
             </div>
-            <h3 
+            <h3
               className="text-xl font-bold text-[#002045]"
               style={{ fontFamily: 'Hind Siliguri, sans-serif' }}
             >
               সরকারি ভাতা
             </h3>
           </div>
-          <p 
+          <p
             className="text-gray-600 mb-4"
             style={{ fontFamily: 'Hind Siliguri, sans-serif' }}
           >
             বয়স্ক ভাতা, বিধবা ভাতা এবং প্রতিবন্ধী ভাতাসহ সকল সরকারি সামাজিক সুরক্ষা প্রোগ্রামের আবেদন ও তালিকা।
           </p>
-          <button 
+          <button
             className="text-[#002045] font-semibold flex items-center gap-2 hover:underline"
             style={{ fontFamily: 'Hind Siliguri, sans-serif' }}
           >
@@ -111,20 +111,20 @@ export default function ServiceGrid() {
             <div className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-[#002045]">
               <span className="material-symbols-outlined">flight_takeoff</span>
             </div>
-            <h3 
+            <h3
               className="text-xl font-bold text-[#002045]"
               style={{ fontFamily: 'Hind Siliguri, sans-serif' }}
             >
               পাসপোর্ট ও ভিসা
             </h3>
           </div>
-          <p 
+          <p
             className="text-gray-600 mb-4"
             style={{ fontFamily: 'Hind Siliguri, sans-serif' }}
           >
             ই-পাসপোর্ট আবেদন, রিনিউয়াল এবং ভিসা সংক্রান্ত সকল তথ্যের জন্য ডিজিটাল পোর্টাল ব্যবহার করুন।
           </p>
-          <button 
+          <button
             className="text-[#002045] font-semibold flex items-center gap-2 hover:underline"
             style={{ fontFamily: 'Hind Siliguri, sans-serif' }}
           >

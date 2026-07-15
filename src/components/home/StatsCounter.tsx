@@ -1,6 +1,6 @@
 export default function StatsCounter() {
   return (
-    <section className="max-w-5xl mx-auto px-6 mb-16">
+    <section className="max-w-6xl mx-auto px-6 mb-16">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-6 p-8 bg-[#002045] rounded-3xl text-white shadow-xl">
         <div className="text-center space-y-2">
           <p className="text-3xl font-bold" style={{ fontFamily: 'Hind Siliguri, sans-serif' }}>৫০+</p>

@@ -1,6 +1,6 @@
 export default function CategoriesGrid() {
   return (
-    <section className="max-w-5xl mx-auto px-6 mb-16">
+    <section className="max-w-6xl mx-auto px-6 mb-16">
       <div className="flex flex-col md:flex-row justify-between items-end mb-8 gap-4">
         <div className="max-w-xl">
           <h2 className="text-3xl font-bold text-[#002045] mb-3" style={{ fontFamily: 'Hind Siliguri, sans-serif' }}>জনপ্রিয় সেবা ক্যাটাগরি</h2>
@@ -64,10 +64,10 @@ export default function CategoriesGrid() {
             </button>
           </div>
           <div className="w-full md:w-1/3 aspect-video rounded-xl overflow-hidden">
-            <img 
-              className="w-full h-full object-cover" 
+            <img
+              className="w-full h-full object-cover"
               alt="Customer support"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbW-NuuV4I8knoF0bZkMXXIF-YHtXT07JvSOqJGhReEwHDvomWyWMpbgsHiPk9xbvYt0i6FlMsoP4J8gcWV5pql1SRzXWlyAIWNtO3ABllD7glM-sfZDr7c25hBAvX39pch2q7vYScNVYKIzKp0AZSNEoLGnuqiINoYCoduI1yMY_MULjeAAkLzeLIz5AyZcFK7PN12rRdTA1FktzKkM9eBaMOYzRQMwf3pXm5m8Mv33ZsCSOHTsU2e3FpmAN2l_iGHS2LgVmqLrkR"
+              src="https://images.unsplash.com/photo-1714079761488-e0c9b9ac4138?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             />
           </div>
         </div>

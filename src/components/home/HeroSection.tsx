@@ -1,8 +1,10 @@
+import { GoCheckCircleFill } from "react-icons/go";
+
 export default function HeroSection() {
   return (
     <section className="relative overflow-hidden pt-16 pb-16 lg:pt-24 lg:pb-24 px-6">
-      <div className="max-w-5xl mx-auto relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-        
+      <div className="max-w-6xl mx-auto relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+
         {/* Left Content */}
         <div className="lg:col-span-7 space-y-6">
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-green-100 text-green-800 rounded-full text-sm font-medium" style={{ fontFamily: 'Hind Siliguri, sans-serif' }}>
@@ -22,7 +24,7 @@ export default function HeroSection() {
           <div className="flex flex-col md:flex-row gap-2 p-2 bg-white rounded-xl shadow-lg border border-gray-200 max-w-2xl">
             <div className="flex-1 flex items-center gap-3 px-4">
               <span className="material-symbols-outlined text-gray-400">search</span>
-              <input 
+              <input
                 className="w-full border-none focus:ring-0 text-gray-900 bg-transparent placeholder-gray-400"
                 placeholder="যেমন: জন্ম নিবন্ধন, ট্রেড লাইসেন্স..."
                 type="text"
@@ -38,10 +40,10 @@ export default function HeroSection() {
         {/* Right Image */}
         <div className="lg:col-span-5 relative">
           <div className="aspect-square relative rounded-3xl overflow-hidden shadow-2xl">
-            <img 
-              className="w-full h-full object-cover" 
+            <img
+              className="w-full h-full object-cover"
               alt="Digital service illustration"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuAaOgoJfdlFVKyKmn_-NoSBieqnlRwl6uGFjeo6E1vaDX5ewwh6Zi1MUaQ6t6OQ_mtUKdaxUwYOvmZR59U_q2BAF5tNONGQA-nbx43Ds5XFaK_BsgGvL1EXb28gB69GDgnf8Gf3C9haIfX40mGBVGZyRymkqPT-cnxdq1RCyR5TM555yLc7AjyRBEhUmmn_81phFwJk7zTIC62AyDxhtZ_DRR2iKwN2FKvSZKloX07bnUKZYPPaDTvnNBkX4gRRxVI941J0cepw8m8c"
+              src="https://images.unsplash.com/photo-1641951820920-c90394aef512?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#002045]/30 to-transparent"></div>
           </div>
@@ -50,7 +52,7 @@ export default function HeroSection() {
           <div className="absolute -bottom-6 -left-6 glass-card p-4 rounded-xl shadow-xl animate-bounce" style={{ animationDuration: '3s' }}>
             <div className="flex items-center gap-3">
               <div className="bg-[#0a6c44] rounded-full p-2 text-white">
-                <span className="material-symbols-outlined text-xl" style={{ fontVariationSettings: "'FILL' 1" }}>check_circle</span>
+                <GoCheckCircleFill />
               </div>
               <div>
                 <p className="font-bold text-[#002045]" style={{ fontFamily: 'Hind Siliguri, sans-serif' }}>৯৯% সফলতা</p>

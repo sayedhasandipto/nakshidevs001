@@ -1,3 +1,5 @@
+import { FaFacebook, FaLinkedin, FaTwitter } from "react-icons/fa";
+
 export default function Footer() {
   return (
     <footer className="w-full bg-[#002045] text-white py-16 px-6">
@@ -42,15 +44,15 @@ export default function Footer() {
 
         <div className="border-t border-white/20 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-sm text-white/70">© 2024 ServiceHub. All rights reserved.</p>
-          <div className="flex gap-4 mt-4 md:mt-0">
+          <div className="flex gap-3 mt-4 md:mt-0">
             <a href="#" className="text-white/70 hover:text-white transition-colors">
-              <span className="text-xl">f</span>
+              <FaFacebook className="w-6 h-6" />
             </a>
             <a href="#" className="text-white/70 hover:text-white transition-colors">
-              <span className="text-xl">in</span>
+              <FaLinkedin className="w-6 h-6" />
             </a>
             <a href="#" className="text-white/70 hover:text-white transition-colors">
-              <span className="text-xl">tw</span>
+              <FaTwitter className="w-6 h-6" />
             </a>
           </div>
         </div>

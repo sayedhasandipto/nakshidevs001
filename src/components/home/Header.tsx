@@ -8,8 +8,8 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-white border-b border-gray-200 shadow-sm">
-      <div className="flex items-center justify-between w-full px-6 py-4 max-w-5xl mx-auto">
+    <header className="fixed top-0 left-0 z-50 w-full bg-white/90 backdrop-blur-xl border-b border-gray-200/50">
+      <div className="flex items-center justify-between w-full px-6 py-4 max-w-6xl mx-auto">
         <div className="flex items-center gap-3">
           <Link href="/">
             <h1 className="text-2xl font-bold text-[#002045]">GovService BD</h1>

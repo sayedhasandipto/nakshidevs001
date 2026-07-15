@@ -1,13 +1,13 @@
 export default function GovServicesHero() {
   return (
-    <section className="max-w-5xl mx-auto px-6 py-16 text-center">
-      <h1 
-        className="text-4xl lg:text-5xl font-bold text-[#002045] mb-4" 
+    <section className="max-w-6xl mx-auto mt-30 text-center">
+      <h1
+        className="text-4xl lg:text-5xl font-bold text-[#002045] mb-4"
         style={{ fontFamily: 'Hind Siliguri, sans-serif' }}
       >
         নাগরিক সেবা ডিরেক্টরি
       </h1>
-      <p 
+      <p
         className="text-lg text-gray-600 max-w-2xl mx-auto"
         style={{ fontFamily: 'Hind Siliguri, sans-serif' }}
       >

@@ -1,8 +1,8 @@
 export default function BusinessScaleup() {
   return (
     <section className="bg-[#002045] py-16 px-6 overflow-hidden relative">
-      <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
-        
+      <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
+
         {/* Left Text */}
         <div className="space-y-6 order-2 lg:order-1">
           <h2 className="text-4xl font-bold text-white leading-snug" style={{ fontFamily: 'Hind Siliguri, sans-serif' }}>
@@ -39,10 +39,10 @@ export default function BusinessScaleup() {
         <div className="order-1 lg:order-2">
           <div className="relative group">
             <div className="absolute inset-0 bg-[#0a6c44] rounded-full blur-3xl opacity-20 group-hover:opacity-30 transition-opacity"></div>
-            <img 
+            <img
               className="w-full relative z-10 rounded-2xl transform lg:rotate-3 hover:rotate-0 transition-transform duration-500 shadow-2xl"
               alt="E-commerce mockup"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDR4-K0H_FELikjSVSJ7u1qWHzNR4mxVQk6xIMLLwqQUPtOjlJs9TgYCbd_c7EEeuzPtdfrwq6r8K66_RKU0KSWz5pmUgwg6GZHMxrkDenAx7LFFAhZeBlOdowEvHAhFfAOTL9KhQU84hWp5ZAbMLyRh1uLZbE017CHq6dBHpuOThlgPkxS1MZ55cSgLDeyhp0DZDH2SpauE23ZEJoFRrt815nn7cwT0OUKBGRdZPQfL8_GYVmTMux4aJDHWwD7vILQCoahTQe-vZrW"
+              src="https://images.unsplash.com/photo-1688561808434-886a6dd97b8c?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             />
           </div>
         </div>
