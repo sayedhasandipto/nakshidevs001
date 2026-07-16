@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useSession } from '@/lib/auth-client';
+import toast from 'react-hot-toast';
 
 const pricingData = {
   ecommerce: [
@@ -84,13 +85,14 @@ export default function PricingSection() {
       });
 
       if (res.ok) {
+        toast.success('Order placed successfully! Redirecting...');
         router.push('/dashboard/orders');
       } else {
-        alert('Failed to place order. Please try again.');
+        toast.error('Failed to place order. Please try again.');
       }
     } catch (error) {
       console.error('Order error:', error);
-      alert('An error occurred. Please try again.');
+      toast.error('An error occurred. Please try again.');
     } finally {
       setLoadingOrder(null);
     }

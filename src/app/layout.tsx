@@ -47,6 +47,7 @@ export const viewport: Viewport = {
 }
 
 import { Providers } from './providers'
+import { Toaster } from 'react-hot-toast';
 
 export default function RootLayout({
   children,
@@ -64,6 +65,7 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap"
           rel="stylesheet"
           precedence="default"
+          crossOrigin="anonymous"
         />
       </head>
       <body
@@ -72,6 +74,7 @@ export default function RootLayout({
       >
         <Providers>
           {children}
+          <Toaster position="top-right" />
           {process.env.NODE_ENV === 'production' && <Analytics />}
         </Providers>
       </body>

@@ -1,20 +1,91 @@
 'use client';
 
-import { use } from 'react';
+import { use, useState, useEffect } from 'react';
 import Header from '@/components/home/Header';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { servicesData } from '@/data/services';
+import { useSession } from '@/lib/auth-client';
+import toast from 'react-hot-toast';
 
 export default function ServiceDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const unwrappedParams = use(params);
   const router = useRouter();
-  
-  const service = servicesData.find(s => s.id === unwrappedParams.id);
+  const { data: session } = useSession();
+  const [isOrdering, setIsOrdering] = useState(false);
+  const [service, setService] = useState<any>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
-  const handleOrderClick = () => {
-    router.push('/auth/login');
+  useEffect(() => {
+    const fetchService = async () => {
+      try {
+        const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+        const res = await fetch(`${API_URL}/api/services/${unwrappedParams.id}`);
+        if (res.ok) {
+          const json = await res.json();
+          setService(json.service);
+        }
+      } catch (error) {
+        console.error('Error fetching service:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchService();
+  }, [unwrappedParams.id]);
+
+  const handleOrderClick = async () => {
+    if (!session?.user) {
+      toast.error('Please login first to place an order.');
+      router.push('/auth/login');
+      return;
+    }
+
+    try {
+      setIsOrdering(true);
+      const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+      const res = await fetch(`${API_URL}/api/orders`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          customerName: session.user.name,
+          customerEmail: session.user.email,
+          serviceName: service?.title,
+          amount: service?.price,
+        }),
+      });
+
+      if (res.ok) {
+        toast.success('Order placed successfully! Redirecting...');
+        setTimeout(() => {
+          window.location.href = '/dashboard/services';
+        }, 1000);
+      } else {
+        toast.error('Failed to place order. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error placing order:', error);
+      toast.error('An error occurred. Please try again.');
+    } finally {
+      setIsOrdering(false);
+    }
   };
+
+  if (isLoading) {
+    return (
+      <>
+        <Header />
+        <div className="flex min-h-screen items-center justify-center bg-gray-50">
+          <div className="text-center">
+            <div className="inline-block h-12 w-12 animate-spin rounded-full border-4 border-gray-300 border-t-blue-600"></div>
+            <p className="mt-4 text-gray-600 font-medium">Loading service details...</p>
+          </div>
+        </div>
+      </>
+    );
+  }
 
   if (!service) {
     return (
@@ -144,9 +215,14 @@ export default function ServiceDetailPage({ params }: { params: Promise<{ id: st
 
                   <button
                     onClick={handleOrderClick}
-                    className="mt-6 w-full rounded-xl bg-[#002045] hover:bg-[#001530] py-4 font-bold text-white transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 flex items-center justify-center gap-2"
+                    disabled={isOrdering}
+                    className="mt-6 w-full rounded-xl bg-[#002045] hover:bg-[#001530] py-4 font-bold text-white transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 flex items-center justify-center gap-2 disabled:opacity-70 disabled:hover:-translate-y-0 disabled:cursor-not-allowed"
                   >
-                    Proceed to Order <span className="material-symbols-outlined text-lg">arrow_forward</span>
+                    {isOrdering ? (
+                      <>Processing...</>
+                    ) : (
+                      <>Proceed to Order <span className="material-symbols-outlined text-lg">arrow_forward</span></>
+                    )}
                   </button>
 
                   <p className="mt-4 text-center text-xs font-medium text-gray-500">

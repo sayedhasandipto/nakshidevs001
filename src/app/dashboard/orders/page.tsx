@@ -2,11 +2,28 @@
 
 import { useEffect, useState } from 'react';
 import { useSession } from '@/lib/auth-client';
+import toast from 'react-hot-toast';
 
 export default function OrdersPage() {
   const { data: session, isPending } = useSession();
   const [orders, setOrders] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+
+  const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+
+  const fetchOrders = async () => {
+    try {
+      const res = await fetch(`${API_URL}/api/orders/user/${session?.user?.email}`);
+      if (res.ok) {
+        const json = await res.json();
+        setOrders(json.data || []);
+      }
+    } catch (error) {
+      console.error('Failed to fetch orders:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
     if (isPending) return;
@@ -16,24 +33,70 @@ export default function OrdersPage() {
       return;
     }
 
-    const fetchOrders = async () => {
-      try {
-        const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
-          
-        const res = await fetch(`${API_URL}/api/orders/user/${session.user.email}`);
-        if (res.ok) {
-          const json = await res.json();
-          setOrders(json.data || []);
-        }
-      } catch (error) {
-        console.error('Failed to fetch orders:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
     fetchOrders();
   }, [session, isPending]);
+
+  const handleCancelOrder = async (orderId: string) => {
+    if (!confirm('Are you sure you want to cancel this order?')) return;
+
+    try {
+      const res = await fetch(`${API_URL}/api/orders/${orderId}/cancel`, {
+        method: 'PUT',
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        toast.success('Order cancelled successfully! Reloading...');
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
+      } else {
+        toast.error(data.error || 'Failed to cancel order.');
+      }
+    } catch (error) {
+      console.error('Error cancelling order:', error);
+      toast.error('An error occurred. Please try again.');
+    }
+  };
+
+  const handleDeleteOrder = async (orderId: string, status: string) => {
+    const isWorking = status === 'Pending' || status === 'In Progress';
+    const msg = isWorking
+      ? 'WARNING: This order is still active. Deleting it will permanently remove the record from your dashboard. Are you sure you want to delete?'
+      : 'Are you sure you want to permanently delete this order record?';
+      
+    if (!confirm(msg)) return;
+
+    try {
+      const res = await fetch(`${API_URL}/api/orders/${orderId}`, {
+        method: 'DELETE',
+      });
+
+      if (res.ok) {
+        toast.success('Order deleted successfully! Reloading...');
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
+      } else {
+        toast.error('Failed to delete order.');
+      }
+    } catch (error) {
+      console.error('Error deleting order:', error);
+      toast.error('An error occurred. Please try again.');
+    }
+  };
+
+  const isCancelable = (orderDateStr: string, status: string) => {
+    if (status === 'Cancelled' || status === 'Completed') return false;
+    
+    const orderDate = new Date(orderDateStr).getTime();
+    const currentDate = new Date().getTime();
+    const diffTime = currentDate - orderDate;
+    const diffDays = diffTime / (1000 * 60 * 60 * 24);
+    
+    return diffDays <= 3;
+  };
 
   return (
     <div>
@@ -50,18 +113,19 @@ export default function OrdersPage() {
                 <th scope="col" className="px-6 py-4">Date</th>
                 <th scope="col" className="px-6 py-4">Amount</th>
                 <th scope="col" className="px-6 py-4">Status</th>
+                <th scope="col" className="px-6 py-4 text-right">Actions</th>
               </tr>
             </thead>
             <tbody>
               {loading ? (
                 <tr>
-                  <td colSpan={5} className="px-6 py-12 text-center text-gray-500">
+                  <td colSpan={6} className="px-6 py-12 text-center text-gray-500">
                     Loading your orders...
                   </td>
                 </tr>
               ) : orders.length === 0 ? (
                 <tr>
-                  <td colSpan={5} className="px-6 py-12 text-center text-gray-500">
+                  <td colSpan={6} className="px-6 py-12 text-center text-gray-500">
                     <div className="flex flex-col items-center justify-center">
                       <span className="material-symbols-outlined text-4xl mb-3 text-gray-300">receipt_long</span>
                       <p>No orders found.</p>
@@ -84,6 +148,22 @@ export default function OrdersPage() {
                       }`}>
                         {order.status}
                       </span>
+                    </td>
+                    <td className="px-6 py-4 text-right flex items-center justify-end gap-3">
+                      {isCancelable(order.orderDate, order.status) && (
+                        <button
+                          onClick={() => handleCancelOrder(order._id)}
+                          className="px-3 py-1.5 bg-red-50 hover:bg-red-100 text-red-600 hover:text-red-700 font-semibold rounded-lg text-xs transition-colors"
+                        >
+                          Cancel
+                        </button>
+                      )}
+                      <button
+                        onClick={() => handleDeleteOrder(order._id, order.status)}
+                        className="px-3 py-1.5 bg-gray-50 hover:bg-gray-100 text-gray-600 hover:text-gray-700 font-semibold rounded-lg text-xs transition-colors"
+                      >
+                        Delete
+                      </button>
                     </td>
                   </tr>
                 ))

@@ -2,14 +2,7 @@ import { MoreVertical, Search, Shield, User } from 'lucide-react';
 import { fetchAdminData } from '@/lib/api';
 
 export default async function AdminUsers() {
-  const fetchedUsers = await fetchAdminData('/users') || [];
-
-  const users = fetchedUsers.length > 0 ? fetchedUsers : [
-    { _id: '1', name: 'Alice Johnson', email: 'alice@example.com', role: 'User', status: 'Active', joinedAt: 'Oct 12, 2025' },
-    { _id: '2', name: 'Bob Smith', email: 'bob@example.com', role: 'Vendor', status: 'Active', joinedAt: 'Sep 05, 2025' },
-    { _id: '3', name: 'Charlie Brown', email: 'charlie@example.com', role: 'User', status: 'Banned', joinedAt: 'Nov 20, 2025' },
-    { _id: '4', name: 'Diana Prince', email: 'diana@example.com', role: 'Admin', status: 'Active', joinedAt: 'Jan 10, 2026' },
-  ];
+  const users = await fetchAdminData('/users') || [];
 
   return (
     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">

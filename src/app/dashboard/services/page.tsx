@@ -52,7 +52,7 @@ export default function ServicesPage() {
           <p className="text-gray-600">All services you have ordered.</p>
         </div>
         <Link
-          href="/#pricing"
+          href="/services"
           className="bg-blue-600 text-white px-6 py-2 rounded-lg font-medium hover:bg-blue-700 transition-colors"
         >
           Order New Service
@@ -71,7 +71,7 @@ export default function ServicesPage() {
             <p className="text-gray-500 mb-6 max-w-sm mx-auto">
               You haven&apos;t ordered any services yet. Browse our packages and get started!
             </p>
-            <Link href="/#pricing" className="text-blue-600 font-semibold hover:underline">
+            <Link href="/services" className="text-blue-600 font-semibold hover:underline">
               Browse available packages →
             </Link>
           </div>

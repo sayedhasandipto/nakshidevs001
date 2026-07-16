@@ -25,28 +25,34 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   // Helper for active link styling
   const isActive = (path: string) => pathname === path;
   const linkClass = (path: string) => 
-    `block rounded-lg px-4 py-3 font-medium transition-colors ${
+    `flex items-center gap-3 rounded-xl px-4 py-3 font-medium transition-all duration-200 ${
       isActive(path) 
-        ? 'bg-blue-50 text-blue-600' 
-        : 'text-gray-700 hover:bg-gray-50'
+        ? 'bg-[#002045] text-white shadow-md' 
+        : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
     }`;
 
   return (
     <div className="min-h-screen bg-gray-50">
       <Header />
       <div className="flex h-[calc(100vh-73px)] pt-[73px]">
-        <aside className="w-64 border-r border-gray-200 bg-white p-6 overflow-y-auto hidden md:block">
-          <nav className="space-y-2">
+        <aside className="w-64 border-r border-gray-100 bg-white p-6 overflow-y-auto hidden md:block shadow-[1px_0_10px_rgba(0,0,0,0.02)] relative z-10">
+          <div className="mb-8 px-2">
+            <h3 className="text-xs font-bold text-gray-400 uppercase tracking-wider">Main Menu</h3>
+          </div>
+          <nav className="space-y-1">
             <Link href="/dashboard" className={linkClass('/dashboard')}>
+              <span className="material-symbols-outlined text-xl opacity-70">dashboard</span>
               Dashboard
             </Link>
             
             {(user?.role === 'client' || user?.role === 'provider' || !user?.role) && (
               <>
                 <Link href="/dashboard/services" className={linkClass('/dashboard/services')}>
+                  <span className="material-symbols-outlined text-xl opacity-70">apps</span>
                   Services
                 </Link>
                 <Link href="/dashboard/orders" className={linkClass('/dashboard/orders')}>
+                  <span className="material-symbols-outlined text-xl opacity-70">receipt_long</span>
                   Orders
                 </Link>
               </>
@@ -54,6 +60,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
             {user?.role === 'provider' && (
               <Link href="/dashboard/add-service" className={linkClass('/dashboard/add-service')}>
+                <span className="material-symbols-outlined text-xl opacity-70">add_circle</span>
                 Add Service
               </Link>
             )}
@@ -61,18 +68,26 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             {user?.role === 'business' && (
               <>
                 <Link href="/dashboard/website-builder" className={linkClass('/dashboard/website-builder')}>
+                  <span className="material-symbols-outlined text-xl opacity-70">web</span>
                   Website Builder
                 </Link>
                 <Link href="/dashboard/store" className={linkClass('/dashboard/store')}>
+                  <span className="material-symbols-outlined text-xl opacity-70">storefront</span>
                   Online Store
                 </Link>
               </>
             )}
+            
+            <div className="pt-8 pb-2 px-2">
+              <h3 className="text-xs font-bold text-gray-400 uppercase tracking-wider">Settings</h3>
+            </div>
 
             <Link href="/dashboard/profile" className={linkClass('/dashboard/profile')}>
+              <span className="material-symbols-outlined text-xl opacity-70">person</span>
               Profile Settings
             </Link>
             <Link href="/dashboard/support" className={linkClass('/dashboard/support')}>
+              <span className="material-symbols-outlined text-xl opacity-70">support_agent</span>
               Support Chat
             </Link>
           </nav>
