@@ -3,6 +3,7 @@ import Footer from '@/components/layout/Footer';
 import WebDevSection from '@/components/home/WebDevSection';
 import { Metadata } from 'next';
 import Link from 'next/link';
+import { MdOutlineShoppingCart } from 'react-icons/md';
 
 export const metadata: Metadata = {
   title: 'Web Development | GovService BD',
@@ -13,7 +14,7 @@ export default function WebDevPage() {
   return (
     <div className="min-h-screen bg-gray-50 font-hind-siliguri">
       <Header />
-      
+
       <main className="pt-24 pb-0">
         {/* Full Page Hero / Header for Web Dev */}
         <section className="bg-gradient-to-r from-blue-900 to-[#002045] text-white py-16 px-6 text-center">
@@ -37,7 +38,8 @@ export default function WebDevPage() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
               <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
                 <div className="w-12 h-12 bg-blue-50 text-[#002045] rounded-xl flex items-center justify-center mb-6">
-                  <span className="material-symbols-outlined text-2xl">shopping_cart</span>
+                  <MdOutlineShoppingCart className="w-6 h-6" />
+
                 </div>
                 <h3 className="text-xl font-bold text-[#002045] mb-3">ই-কমার্স ওয়েবসাইট</h3>
                 <p className="text-gray-600 leading-relaxed">
@@ -63,7 +65,7 @@ export default function WebDevPage() {
                 </p>
               </div>
             </div>
-            
+
             <div className="mt-16">
               <Link href="/business-solutions">
                 <button className="px-10 py-4 bg-green-500 hover:bg-green-400 text-[#002045] rounded-full font-bold text-xl shadow-lg transition-all transform hover:-translate-y-1">
@@ -73,7 +75,7 @@ export default function WebDevPage() {
             </div>
           </div>
         </section>
-        
+
       </main>
 
       <Footer />

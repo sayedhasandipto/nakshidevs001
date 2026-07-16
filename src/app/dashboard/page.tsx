@@ -2,193 +2,84 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { useSession } from '@/lib/auth-client';
 
 export default function Dashboard() {
-  const [user, setUser] = useState<any>(null);
-  const [loading, setLoading] = useState(true);
+  const { data: session } = useSession();
+  const [ordersCount, setOrdersCount] = useState<number>(0);
 
   useEffect(() => {
-    fetchUser();
-  }, []);
+    if (!session?.user?.email) return;
 
-  const fetchUser = async () => {
-    try {
-      const response = await fetch('/api/auth/session');
-      if (response.ok) {
-        const data = await response.json();
-        setUser(data.user);
+    const fetchOrders = async () => {
+      try {
+        const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+        const res = await fetch(`${API_URL}/api/orders/user/${session.user.email}`);
+        if (res.ok) {
+          const json = await res.json();
+          setOrdersCount(json.data?.length || 0);
+        }
+      } catch {
+        // silently fail
       }
-    } catch (error) {
-      console.error('Failed to fetch user:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
+    };
 
-  const handleLogout = async () => {
-    try {
-      await fetch('/api/auth/sign-out', { method: 'POST' });
-      window.location.href = '/';
-    } catch (error) {
-      console.error('Failed to logout:', error);
-    }
-  };
+    fetchOrders();
+  }, [session]);
 
-  if (loading) {
-    return (
-      <div className="flex min-h-screen items-center justify-center">
-        <div className="text-center">
-          <div className="inline-block h-12 w-12 animate-spin rounded-full border-4 border-gray-300 border-t-blue-600"></div>
-          <p className="mt-4 text-gray-600">Loading...</p>
-        </div>
-      </div>
-    );
-  }
+  const user = session?.user;
+  const firstName = user?.name ? user.name.split(' ')[0] : 'User';
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="sticky top-0 z-40 border-b border-gray-200 bg-white">
-        <div className="flex items-center justify-between px-6 py-4">
-          <div className="flex items-center space-x-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-blue-600 to-indigo-600">
-              <span className="text-white font-bold">
-                {user?.name?.charAt(0).toUpperCase()}
-              </span>
-            </div>
-            <div>
-              <h1 className="font-semibold text-gray-900">{user?.name}</h1>
-              <p className="text-sm text-gray-500 capitalize">{user?.role}</p>
-            </div>
-          </div>
-          <button
-            onClick={handleLogout}
-            className="rounded-lg border border-gray-300 px-4 py-2 text-gray-700 hover:bg-gray-50"
-          >
-            Log Out
-          </button>
+    <div>
+      <h2 className="mb-2 text-3xl font-bold text-gray-900">Welcome back, {firstName}!</h2>
+      <p className="text-gray-600 mb-8">Here&apos;s your dashboard overview</p>
+
+      {/* Quick Stats */}
+      <div className="grid gap-6 md:grid-cols-4 mb-8">
+        <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm hover:shadow-md transition-shadow">
+          <p className="text-sm font-medium text-gray-600">Active Services</p>
+          <p className="mt-2 text-3xl font-bold text-gray-900">0</p>
         </div>
-      </header>
+        <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm hover:shadow-md transition-shadow">
+          <p className="text-sm font-medium text-gray-600">Total Orders</p>
+          <p className="mt-2 text-3xl font-bold text-gray-900">{ordersCount}</p>
+        </div>
+        <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm hover:shadow-md transition-shadow">
+          <p className="text-sm font-medium text-gray-600">Revenue</p>
+          <p className="mt-2 text-3xl font-bold text-gray-900">৳0</p>
+        </div>
+        <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm hover:shadow-md transition-shadow">
+          <p className="text-sm font-medium text-gray-600">Rating</p>
+          <p className="mt-2 text-3xl font-bold text-gray-900">0.0★</p>
+        </div>
+      </div>
 
-      {/* Main Content */}
-      <div className="flex h-[calc(100vh-73px)]">
-        {/* Sidebar */}
-        <aside className="w-64 border-r border-gray-200 bg-white p-6">
-          <nav className="space-y-2">
-            <Link
-              href="/dashboard"
-              className="block rounded-lg bg-blue-50 px-4 py-3 font-medium text-blue-600"
-            >
-              Dashboard
-            </Link>
-            
-            {(user?.role === 'client' || user?.role === 'provider') && (
-              <>
-                <Link
-                  href="/dashboard/services"
-                  className="block rounded-lg px-4 py-3 text-gray-700 hover:bg-gray-50"
-                >
-                  Services
-                </Link>
-                <Link
-                  href="/dashboard/orders"
-                  className="block rounded-lg px-4 py-3 text-gray-700 hover:bg-gray-50"
-                >
-                  Orders
-                </Link>
-              </>
-            )}
-
-            {user?.role === 'provider' && (
-              <Link
-                href="/dashboard/add-service"
-                className="block rounded-lg px-4 py-3 text-gray-700 hover:bg-gray-50"
-              >
-                Add Service
-              </Link>
-            )}
-
-            {user?.role === 'business' && (
-              <>
-                <Link
-                  href="/dashboard/website-builder"
-                  className="block rounded-lg px-4 py-3 text-gray-700 hover:bg-gray-50"
-                >
-                  Website Builder
-                </Link>
-                <Link
-                  href="/dashboard/store"
-                  className="block rounded-lg px-4 py-3 text-gray-700 hover:bg-gray-50"
-                >
-                  Online Store
-                </Link>
-              </>
-            )}
-
-            <Link
-              href="/dashboard/profile"
-              className="block rounded-lg px-4 py-3 text-gray-700 hover:bg-gray-50"
-            >
-              Profile Settings
-            </Link>
-            <Link
-              href="/dashboard/support"
-              className="block rounded-lg px-4 py-3 text-gray-700 hover:bg-gray-50"
-            >
-              Support Chat
-            </Link>
-          </nav>
-        </aside>
-
-        {/* Main Panel */}
-        <main className="flex-1 overflow-auto p-8">
-          <div className="max-w-6xl">
-            <h2 className="mb-2 text-3xl font-bold text-gray-900">Welcome back, {user?.name?.split(' ')[0]}!</h2>
-            <p className="text-gray-600 mb-8">Here&apos;s your dashboard overview</p>
-
-            {/* Quick Stats */}
-            <div className="grid gap-6 md:grid-cols-4 mb-8">
-              <div className="rounded-lg border border-gray-200 bg-white p-6">
-                <p className="text-sm text-gray-600">Active Services</p>
-                <p className="mt-2 text-3xl font-bold text-gray-900">0</p>
-              </div>
-              <div className="rounded-lg border border-gray-200 bg-white p-6">
-                <p className="text-sm text-gray-600">Total Orders</p>
-                <p className="mt-2 text-3xl font-bold text-gray-900">0</p>
-              </div>
-              <div className="rounded-lg border border-gray-200 bg-white p-6">
-                <p className="text-sm text-gray-600">Revenue</p>
-                <p className="mt-2 text-3xl font-bold text-gray-900">৳0</p>
-              </div>
-              <div className="rounded-lg border border-gray-200 bg-white p-6">
-                <p className="text-sm text-gray-600">Rating</p>
-                <p className="mt-2 text-3xl font-bold text-gray-900">0.0★</p>
-              </div>
-            </div>
-
-            {/* Get Started Section */}
-            <div className="rounded-lg bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-200 p-8 text-center">
-              <h3 className="text-2xl font-bold text-gray-900 mb-3">Get Started</h3>
-              <p className="text-gray-600 mb-6">
-                Complete your profile and start using ServiceHub
-              </p>
-              <div className="flex flex-wrap justify-center gap-4">
-                <Link
-                  href="/dashboard/profile"
-                  className="rounded-lg bg-blue-600 px-6 py-3 font-semibold text-white hover:bg-blue-700"
-                >
-                  Complete Profile
-                </Link>
-                <Link
-                  href="/services"
-                  className="rounded-lg border border-blue-600 px-6 py-3 font-semibold text-blue-600 hover:bg-blue-50"
-                >
-                  Browse Services
-                </Link>
-              </div>
-            </div>
-          </div>
-        </main>
+      {/* Get Started Section */}
+      <div className="rounded-xl bg-gradient-to-r from-blue-50 via-indigo-50 to-blue-50 border border-blue-100 p-8 text-center shadow-sm relative overflow-hidden">
+        <div className="absolute top-0 right-0 p-12 opacity-5 pointer-events-none">
+          <svg className="w-48 h-48" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2L2 22h20L12 2zm0 3.8L18.4 19H5.6L12 5.8z"/>
+          </svg>
+        </div>
+        <h3 className="text-2xl font-bold text-gray-900 mb-3 relative z-10">Get Started with ServiceHub</h3>
+        <p className="text-gray-600 mb-8 max-w-lg mx-auto relative z-10">
+          Complete your profile to unlock all features, build trust with users, and start exploring our robust online services.
+        </p>
+        <div className="flex flex-wrap justify-center gap-4 relative z-10">
+          <Link
+            href="/dashboard/profile"
+            className="rounded-lg bg-blue-600 px-6 py-3 font-semibold text-white shadow-md hover:bg-blue-700 hover:shadow-lg transition-all"
+          >
+            Complete Profile
+          </Link>
+          <Link
+            href="/dashboard/orders"
+            className="rounded-lg bg-white border border-blue-200 px-6 py-3 font-semibold text-blue-600 shadow-sm hover:bg-blue-50 hover:border-blue-300 transition-all"
+          >
+            View My Orders
+          </Link>
+        </div>
       </div>
     </div>
   );

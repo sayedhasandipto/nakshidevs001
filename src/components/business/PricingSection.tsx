@@ -1,6 +1,8 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { useSession } from '@/lib/auth-client';
 
 const pricingData = {
   ecommerce: [
@@ -55,6 +57,44 @@ const pricingData = {
 
 export default function PricingSection() {
   const [activeTab, setActiveTab] = useState<'ecommerce' | 'portfolio' | 'corporate'>('ecommerce');
+  const [loadingOrder, setLoadingOrder] = useState<string | null>(null);
+  
+  const router = useRouter();
+  const { data: session } = useSession();
+
+  const handleOrder = async (plan: { name: string; price: string }) => {
+    if (!session?.user) {
+      router.push('/auth/login');
+      return;
+    }
+
+    try {
+      setLoadingOrder(plan.name);
+      const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+        
+      const res = await fetch(`${API_URL}/api/orders`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          customerName: session.user.name || 'User',
+          customerEmail: session.user.email,
+          serviceName: plan.name,
+          amount: `৳${plan.price}`,
+        }),
+      });
+
+      if (res.ok) {
+        router.push('/dashboard/orders');
+      } else {
+        alert('Failed to place order. Please try again.');
+      }
+    } catch (error) {
+      console.error('Order error:', error);
+      alert('An error occurred. Please try again.');
+    } finally {
+      setLoadingOrder(null);
+    }
+  };
 
   const tabs = [
     { id: 'ecommerce', label: 'ই-কমার্স ওয়েবসাইট' },
@@ -119,13 +159,15 @@ export default function PricingSection() {
               </div>
               <div className="pt-2 pb-2 flex justify-center mt-auto">
                 <button
+                  onClick={() => handleOrder(plan)}
+                  disabled={loadingOrder === plan.name}
                   className={`w-full py-4 font-bold text-md rounded-xl transition-colors ${
                     plan.isPopular
                       ? 'bg-[#0a6c44] text-white hover:bg-[#085a38]'
                       : 'bg-[#002045] text-white hover:bg-blue-900'
-                  }`}
+                  } ${loadingOrder === plan.name ? 'opacity-70 cursor-not-allowed' : ''}`}
                 >
-                  অর্ডার করুন
+                  {loadingOrder === plan.name ? 'প্রসেসিং...' : 'অর্ডার করুন'}
                 </button>
               </div>
             </div>

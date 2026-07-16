@@ -82,7 +82,7 @@ export default function SignUp() {
   ({ color: focusedField === field ? '#6366f1' : 'rgba(148,163,184,0.6)' });
 
   return (
-    <div className="relative flex min-h-screen items-center justify-center overflow-hidden px-4 py-12">
+    <div className="relative flex min-h-screen items-center justify-center overflow-hidden mt-10 px-4">
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-indigo-950 to-violet-950" />
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -100,7 +100,7 @@ export default function SignUp() {
 
       <div className="relative z-10 w-full max-w-md">
         {/* Brand header */}
-        <div className="mb-8 text-center">
+        <div className="mb-4 text-center">
           <div
             className="inline-flex items-center justify-center w-16 h-16 rounded-2xl mb-4"
             style={{ background: 'linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%)' }}

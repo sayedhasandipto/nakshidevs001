@@ -1,8 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import Navigation from '@/components/layout/Navbar';
+import Header from '@/components/home/Header';
 import Link from 'next/link';
+import { servicesData } from '@/data/services';
 
 export default function ServicesPage() {
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -18,110 +19,45 @@ export default function ServicesPage() {
     'technical',
   ];
 
-  const services = [
-    {
-      id: 1,
-      title: 'Birth Certificate Registration',
-      category: 'government',
-      price: 500,
-      duration: '5-7 days',
-      rating: 4.8,
-      reviews: 245,
-      description: 'Complete birth certificate registration process with government agencies',
-      features: ['Document preparation', 'Government liaison', 'Status tracking'],
-    },
-    {
-      id: 2,
-      title: 'Voter ID Card Application',
-      category: 'government',
-      price: 300,
-      duration: '7-10 days',
-      rating: 4.6,
-      reviews: 189,
-      description: 'Help with voter ID card registration and updates',
-      features: ['Form filling', 'Document collection', 'Center visit assistance'],
-    },
-    {
-      id: 3,
-      title: 'Business Registration',
-      category: 'business',
-      price: 2000,
-      duration: '15-20 days',
-      rating: 4.9,
-      reviews: 567,
-      description: 'Complete business registration including trade license',
-      features: ['Legal documentation', 'License preparation', 'Filing assistance'],
-    },
-    {
-      id: 4,
-      title: 'Job Application Assistance',
-      category: 'business',
-      price: 1000,
-      duration: '3-5 days',
-      rating: 4.7,
-      reviews: 342,
-      description: 'Professional CV and job application support',
-      features: ['CV preparation', 'Cover letter', 'Interview coaching'],
-    },
-    {
-      id: 5,
-      title: 'Legal Consultation',
-      category: 'legal',
-      price: 1500,
-      duration: '1-2 days',
-      rating: 4.8,
-      reviews: 421,
-      description: 'Expert legal advice for personal and business matters',
-      features: ['Document review', 'Legal advice', 'Contract drafting'],
-    },
-    {
-      id: 6,
-      title: 'Web Development',
-      category: 'technical',
-      price: 5000,
-      duration: '30-45 days',
-      rating: 4.9,
-      reviews: 893,
-      description: 'Professional website development for your business',
-      features: ['Custom design', 'Responsive layout', 'SEO optimization'],
-    },
-  ];
-
   const filteredServices =
     selectedCategory === 'all'
-      ? services
-      : services.filter((s) => s.category === selectedCategory);
+      ? servicesData
+      : servicesData.filter((s) => s.category === selectedCategory);
 
   return (
     <>
-      <Navigation />
+      <Header />
 
-      <div className="bg-gradient-to-br from-blue-50 to-indigo-50 px-4 py-16 sm:py-24">
-        <div className="mx-auto max-w-7xl">
-          <h1 className="text-balance text-4xl font-bold text-gray-900 sm:text-5xl">
+      <div className="bg-gradient-to-br from-[#001830] via-[#002045] to-[#0a1628] px-4 pt-32 pb-16 sm:pt-40 sm:pb-24 relative overflow-hidden">
+        <div className="absolute top-1/2 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none -translate-y-1/2" />
+        <div className="mx-auto max-w-7xl relative z-10 text-center md:text-left">
+          <h1 className="text-balance text-4xl font-extrabold text-white sm:text-5xl lg:text-6xl tracking-tight">
             Available Services
           </h1>
-          <p className="mt-4 text-xl text-gray-600">
-            Browse and order from our comprehensive service offerings
+          <p className="mt-6 text-xl text-gray-300 max-w-2xl">
+            Browse and order from our comprehensive service offerings. Premium solutions tailored for your needs.
           </p>
         </div>
       </div>
 
-      <div className="mx-auto max-w-7xl px-4 py-12">
-        <div className="grid gap-8 lg:grid-cols-4">
+      <div className="mx-auto max-w-7xl px-4 py-16">
+        <div className="grid gap-10 lg:grid-cols-4">
           {/* Sidebar Filters */}
           <aside className="lg:col-span-1">
-            <div className="sticky top-20 space-y-6">
+            <div className="sticky top-24 space-y-8 bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
               <div>
-                <h3 className="text-lg font-semibold text-gray-900">Categories</h3>
-                <div className="mt-4 space-y-2">
+                <h3 className="text-xl font-bold text-[#002045] flex items-center gap-2">
+                  <span className="material-symbols-outlined text-blue-600">filter_list</span>
+                  Categories
+                </h3>
+                <div className="mt-6 flex flex-col gap-2">
                   {categories.map((category) => (
                     <button
                       key={category}
                       onClick={() => setSelectedCategory(category)}
-                      className={`block w-full rounded-lg px-4 py-2 text-left capitalize transition-all ${
+                      className={`block w-full rounded-xl px-5 py-3 text-left capitalize transition-all duration-200 font-medium ${
                         selectedCategory === category
-                          ? 'bg-blue-100 text-blue-600 font-semibold'
+                          ? 'bg-[#002045] text-white shadow-md'
                           : 'text-gray-600 hover:bg-gray-100'
                       }`}
                     >
@@ -135,66 +71,75 @@ export default function ServicesPage() {
 
           {/* Services Grid */}
           <div className="lg:col-span-3">
-            <div className="grid gap-6 md:grid-cols-2">
+            <div className="grid gap-8 md:grid-cols-2">
               {filteredServices.map((service) => (
                 <div
                   key={service.id}
-                  className="overflow-hidden rounded-xl border border-gray-200 bg-white hover:shadow-lg transition-all"
+                  className="group flex flex-col overflow-hidden rounded-2xl border border-gray-100 bg-white hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
                 >
-                  <div className="aspect-video bg-gradient-to-br from-blue-100 to-indigo-100"></div>
+                  <div className="p-8 flex flex-col h-full">
+                    <div className="flex-1">
+                      <p className="text-xs font-bold uppercase tracking-wider text-blue-600 mb-3 inline-block px-3 py-1 bg-blue-50 rounded-full">
+                        {service.category}
+                      </p>
+                      <h3 className="text-2xl font-bold text-[#002045] mb-4">
+                        {service.title}
+                      </h3>
+                      <p className="text-gray-600 leading-relaxed line-clamp-3">
+                        {service.description}
+                      </p>
 
-                  <div className="p-6">
-                    <div className="flex items-start justify-between">
-                      <div className="flex-1">
-                        <p className="text-xs font-semibold uppercase text-blue-600">
-                          {service.category}
-                        </p>
-                        <h3 className="mt-2 text-xl font-bold text-gray-900">
-                          {service.title}
-                        </h3>
+                      <div className="mt-6 space-y-3">
+                        {service.features.slice(0, 3).map((feature, i) => (
+                          <div key={i} className="flex items-center space-x-3 text-sm text-gray-700 font-medium">
+                            <span className="material-symbols-outlined text-[#0a6c44] text-lg" style={{ fontVariationSettings: "'FILL' 1" }}>check_circle</span>
+                            <span>{feature}</span>
+                          </div>
+                        ))}
                       </div>
                     </div>
 
-                    <p className="mt-3 text-gray-600">{service.description}</p>
-
-                    <div className="mt-4 space-y-2">
-                      {service.features.map((feature, i) => (
-                        <div key={i} className="flex items-center space-x-2 text-sm text-gray-600">
-                          <span>✓</span>
-                          <span>{feature}</span>
+                    <div className="mt-8 pt-6 border-t border-gray-100">
+                      <div className="flex items-center justify-between mb-6">
+                        <div>
+                          <p className="text-3xl font-extrabold text-[#002045]">৳{service.price}</p>
+                          <p className="text-sm font-medium text-gray-500 mt-1 flex items-center gap-1">
+                             <span className="material-symbols-outlined text-sm">schedule</span> {service.duration}
+                          </p>
                         </div>
-                      ))}
-                    </div>
-
-                    <div className="mt-6 flex items-center justify-between border-t border-gray-100 pt-4">
-                      <div>
-                        <p className="text-lg font-bold text-gray-900">৳{service.price}</p>
-                        <p className="text-sm text-gray-500">{service.duration}</p>
-                      </div>
-                      <div className="text-right">
-                        <div className="flex items-center space-x-1">
-                          <span className="text-sm font-semibold text-gray-900">
-                            {service.rating}★
-                          </span>
+                        <div className="text-right">
+                          <p className="text-xl font-bold text-amber-500 flex items-center gap-1 justify-end">
+                            {service.rating} <span>★</span>
+                          </p>
+                          <p className="text-xs font-medium text-gray-500 mt-1">{service.reviews} reviews</p>
                         </div>
-                        <p className="text-xs text-gray-500">{service.reviews} reviews</p>
                       </div>
-                    </div>
 
-                    <Link
-                      href="/auth/login"
-                      className="mt-4 block w-full rounded-lg bg-gradient-to-r from-blue-600 to-indigo-600 px-4 py-3 text-center font-semibold text-white hover:from-blue-700 hover:to-indigo-700 transition-all"
-                    >
-                      Order Now
-                    </Link>
+                      <Link
+                        href={`/services/${service.id}`}
+                        className="block w-full rounded-xl bg-blue-600 hover:bg-blue-700 px-4 py-3.5 text-center font-bold text-white transition-all shadow-md hover:shadow-lg group-hover:-translate-y-0.5"
+                      >
+                        View Details
+                      </Link>
+                    </div>
                   </div>
                 </div>
               ))}
             </div>
 
             {filteredServices.length === 0 && (
-              <div className="rounded-lg border border-gray-200 bg-white p-12 text-center">
-                <p className="text-gray-600">No services found in this category</p>
+              <div className="rounded-2xl border border-gray-100 bg-white p-16 text-center shadow-sm">
+                <div className="w-20 h-20 bg-gray-50 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <span className="material-symbols-outlined text-4xl text-gray-400">search_off</span>
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">No Services Found</h3>
+                <p className="text-gray-500">There are currently no services available in this category.</p>
+                <button 
+                  onClick={() => setSelectedCategory('all')}
+                  className="mt-6 text-blue-600 font-semibold hover:underline"
+                >
+                  View all services
+                </button>
               </div>
             )}
           </div>

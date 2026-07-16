@@ -1,136 +1,152 @@
+import Link from 'next/link';
+
+const services = [
+  {
+    title: 'জন্ম নিবন্ধন (আবেদন ও সংশোধন)',
+    desc: 'নতুন জন্ম নিবন্ধনের জন্য অনলাইনে আবেদন করুন অথবা বিদ্যমান নিবন্ধনের যেকোনো তথ্য সংশোধন করুন। আপনার পরিচয় নিশ্চিত করতে এটি অত্যাবশ্যকীয়।',
+    icon: 'child_care',
+    features: ['অনলাইন আবেদন', 'তথ্য যাচাই', 'দ্রুত সংশোধন', 'ডিজিটাল কপি ডাউনলোড'],
+    link: '/services/1',
+    linkText: 'আবেদন করুন',
+    colSpan: 'md:col-span-8',
+    bg: 'bg-white',
+    iconBg: 'bg-blue-50 text-blue-600',
+    btnStyle: 'bg-[#002045] text-white hover:bg-[#001530]',
+    large: true,
+  },
+  {
+    title: 'ভোটার আইডি কার্ড',
+    desc: 'নতুন ভোটার হিসেবে নিবন্ধন করুন বা জাতীয় পরিচয়পত্রের ভুল সংশোধন করুন। স্মার্ট কার্ডের স্ট্যাটাস চেক করুন।',
+    icon: 'how_to_reg',
+    link: '/services/2',
+    linkText: 'আবেদন করুন',
+    colSpan: 'md:col-span-4',
+    bg: 'bg-gradient-to-br from-blue-50 to-indigo-50',
+    iconBg: 'bg-white text-indigo-600 shadow-sm',
+    btnStyle: 'bg-[#0a6c44] text-white hover:bg-[#085a38]',
+    large: false,
+  },
+  {
+    title: 'ব্যবসা নিবন্ধন',
+    desc: 'ট্রেড লাইসেন্সসহ সম্পূর্ণ ব্যবসা নিবন্ধন প্রক্রিয়া। আইনি ডকুমেন্টেশন, লাইসেন্স প্রস্তুতি এবং ফাইলিং সহায়তা।',
+    icon: 'storefront',
+    link: '/services/3',
+    linkText: 'বিস্তারিত দেখুন',
+    colSpan: 'md:col-span-6',
+    bg: 'bg-white',
+    iconBg: 'bg-emerald-50 text-emerald-600',
+    btnStyle: 'text-[#002045] hover:text-blue-700 bg-transparent',
+    borderLeft: 'border-l-4 border-l-[#0a6c44]',
+    large: false,
+  },
+  {
+    title: 'চাকরি আবেদন সহায়তা',
+    desc: 'পেশাদার সিভি তৈরি, কভার লেটার এবং ইন্টারভিউ কোচিং সেবা। চাকরি পেতে সর্বোচ্চ সহায়তা।',
+    icon: 'work',
+    link: '/services/4',
+    linkText: 'আবেদন করুন',
+    colSpan: 'md:col-span-6',
+    bg: 'bg-white',
+    iconBg: 'bg-blue-50 text-blue-600',
+    btnStyle: 'text-[#002045] hover:text-blue-700 bg-transparent',
+    borderLeft: 'border-l-4 border-l-[#002045]',
+    large: false,
+  },
+  {
+    title: 'আইনি পরামর্শ',
+    desc: 'ব্যক্তিগত ও ব্যবসায়িক বিষয়ে বিশেষজ্ঞ আইনি পরামর্শ। ডকুমেন্ট রিভিউ, চুক্তি প্রস্তুত এবং আইনি সহায়তা।',
+    icon: 'gavel',
+    link: '/services/5',
+    linkText: 'পরামর্শ নিন',
+    colSpan: 'md:col-span-4',
+    bg: 'bg-gradient-to-br from-amber-50 to-orange-50',
+    iconBg: 'bg-white text-amber-600 shadow-sm',
+    btnStyle: 'bg-[#002045] text-white hover:bg-[#001530]',
+    large: false,
+  },
+  {
+    title: 'ওয়েব ডেভেলপমেন্ট',
+    desc: 'আপনার ব্যবসার জন্য পেশাদার ওয়েবসাইট তৈরি। কাস্টম ডিজাইন, রেসপনসিভ লেআউট এবং এসইও অপটিমাইজেশন।',
+    icon: 'code',
+    link: '/services/6',
+    linkText: 'বিস্তারিত দেখুন',
+    colSpan: 'md:col-span-4',
+    bg: 'bg-white',
+    iconBg: 'bg-purple-50 text-purple-600',
+    btnStyle: 'text-[#002045] hover:text-blue-700 bg-transparent',
+    borderLeft: 'border-l-4 border-l-purple-500',
+    large: false,
+  },
+  {
+    title: 'সকল সেবা দেখুন',
+    desc: 'আমাদের সম্পূর্ণ সেবা তালিকা ব্রাউজ করুন এবং আপনার প্রয়োজন অনুযায়ী সঠিক সেবাটি খুঁজে নিন।',
+    icon: 'apps',
+    link: '/services',
+    linkText: 'সকল সেবা →',
+    colSpan: 'md:col-span-4',
+    bg: 'bg-gradient-to-br from-[#002045] to-[#0a1628]',
+    iconBg: 'bg-white/10 text-white',
+    btnStyle: 'bg-blue-500 text-white hover:bg-blue-600',
+    textWhite: true,
+    large: false,
+  },
+];
+
 export default function ServiceGrid() {
   return (
-    <section className="max-w-6xl mx-auto px-6 py-12">
+    <section className="max-w-6xl mx-auto px-6 py-16">
       <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
-        {/* Service 1: Birth Registration */}
-        <div className="md:col-span-8 group relative overflow-hidden rounded-xl border border-gray-200 bg-white p-8 transition-all hover:shadow-lg">
-          <div className="flex flex-col md:flex-row gap-6 items-start">
-            <div className="w-16 h-16 rounded-lg bg-blue-100 flex items-center justify-center text-[#002045] shrink-0">
-              <span className="material-symbols-outlined text-4xl">child_care</span>
-            </div>
-            <div>
-              <h3
-                className="text-2xl font-bold text-[#002045] mb-3"
-                style={{ fontFamily: 'Hind Siliguri, sans-serif' }}
-              >
-                জন্ম নিবন্ধন (আবেদন ও সংশোধন)
-              </h3>
-              <p
-                className="text-gray-600 mb-6"
-                style={{ fontFamily: 'Hind Siliguri, sans-serif' }}
-              >
-                নতুন জন্ম নিবন্ধনের জন্য অনলাইনে আবেদন করুন অথবা বিদ্যমান নিবন্ধনের যেকোনো তথ্য নির্ভুলভাবে সংশোধন করার প্রক্রিয়া শুরু করুন। আপনার পরিচয় নিশ্চিত করতে এটি একটি অত্যাবশ্যকীয় ধাপ।
-              </p>
-              <ul className="mb-6 grid grid-cols-1 sm:grid-cols-2 gap-2 text-gray-600 text-sm">
-                <li className="flex items-center gap-2" style={{ fontFamily: 'Hind Siliguri, sans-serif' }}>
-                  <span className="material-symbols-outlined text-[#0a6c44] text-lg" style={{ fontVariationSettings: "'FILL' 1" }}>check_circle</span>
-                  অনলাইন আবেদন
-                </li>
-                <li className="flex items-center gap-2" style={{ fontFamily: 'Hind Siliguri, sans-serif' }}>
-                  <span className="material-symbols-outlined text-[#0a6c44] text-lg" style={{ fontVariationSettings: "'FILL' 1" }}>check_circle</span>
-                  তথ্য যাচাই
-                </li>
-                <li className="flex items-center gap-2" style={{ fontFamily: 'Hind Siliguri, sans-serif' }}>
-                  <span className="material-symbols-outlined text-[#0a6c44] text-lg" style={{ fontVariationSettings: "'FILL' 1" }}>check_circle</span>
-                  দ্রুত সংশোধন
-                </li>
-                <li className="flex items-center gap-2" style={{ fontFamily: 'Hind Siliguri, sans-serif' }}>
-                  <span className="material-symbols-outlined text-[#0a6c44] text-lg" style={{ fontVariationSettings: "'FILL' 1" }}>check_circle</span>
-                  ডিজিটাল কপি ডাউনলোড
-                </li>
-              </ul>
-              <button
-                className="bg-[#002045] text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-800 transition-all flex items-center gap-2"
-                style={{ fontFamily: 'Hind Siliguri, sans-serif' }}
-              >
-                আবেদন করুন <span className="material-symbols-outlined">arrow_forward</span>
-              </button>
-            </div>
-          </div>
-        </div>
+        {services.map((service) => (
+          <div
+            key={service.title}
+            className={`${service.colSpan} group relative overflow-hidden rounded-2xl border border-gray-200 ${service.bg} ${service.borderLeft || ''} p-8 transition-all duration-300 hover:shadow-xl hover:-translate-y-1`}
+          >
+            <div className={service.large ? 'flex flex-col md:flex-row gap-6 items-start' : 'flex flex-col h-full'}>
+              <div className={`w-14 h-14 rounded-xl ${service.iconBg} flex items-center justify-center shrink-0 ${service.large ? '' : 'mb-5'}`}>
+                <span className="material-symbols-outlined text-3xl">{service.icon}</span>
+              </div>
 
-        {/* Service 2: Voter ID */}
-        <div className="md:col-span-4 group relative overflow-hidden rounded-xl border border-gray-200 bg-blue-50 p-8 transition-all hover:shadow-lg">
-          <div className="flex flex-col h-full">
-            <div className="w-16 h-16 rounded-lg bg-white flex items-center justify-center text-[#002045] mb-6">
-              <span className="material-symbols-outlined text-4xl">how_to_reg</span>
-            </div>
-            <h3
-              className="text-2xl font-bold text-[#002045] mb-3"
-              style={{ fontFamily: 'Hind Siliguri, sans-serif' }}
-            >
-              ভোটার আইডি কার্ড
-            </h3>
-            <p
-              className="text-gray-600 mb-6"
-              style={{ fontFamily: 'Hind Siliguri, sans-serif' }}
-            >
-              নতুন ভোটার হিসেবে নিবন্ধন করুন বা জাতীয় পরিচয়পত্রের ভুল সংশোধন করুন। স্মার্ট কার্ডের স্ট্যাটাস চেক করুন।
-            </p>
-            <div className="mt-auto">
-              <button
-                className="w-full bg-[#0a6c44] text-white px-6 py-3 rounded-lg font-semibold hover:opacity-90 transition-all"
-                style={{ fontFamily: 'Hind Siliguri, sans-serif' }}
-              >
-                আবেদন করুন
-              </button>
-            </div>
-          </div>
-        </div>
+              <div className={service.large ? '' : 'flex-grow'}>
+                <h3 className={`text-xl md:text-2xl font-bold mb-3 ${service.textWhite ? 'text-white' : 'text-[#002045]'}`}>
+                  {service.title}
+                </h3>
+                <p className={`mb-5 leading-relaxed text-sm ${service.textWhite ? 'text-gray-300' : 'text-gray-600'}`}>
+                  {service.desc}
+                </p>
 
-        {/* Service 3: Government Allowances */}
-        <div className="md:col-span-6 group relative overflow-hidden rounded-xl border-l-4 border-l-[#0a6c44] bg-white border border-gray-200 p-6 transition-all hover:shadow-lg">
-          <div className="flex items-center gap-4 mb-4">
-            <div className="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center text-[#0a6c44]">
-              <span className="material-symbols-outlined">payments</span>
-            </div>
-            <h3
-              className="text-xl font-bold text-[#002045]"
-              style={{ fontFamily: 'Hind Siliguri, sans-serif' }}
-            >
-              সরকারি ভাতা
-            </h3>
-          </div>
-          <p
-            className="text-gray-600 mb-4"
-            style={{ fontFamily: 'Hind Siliguri, sans-serif' }}
-          >
-            বয়স্ক ভাতা, বিধবা ভাতা এবং প্রতিবন্ধী ভাতাসহ সকল সরকারি সামাজিক সুরক্ষা প্রোগ্রামের আবেদন ও তালিকা।
-          </p>
-          <button
-            className="text-[#002045] font-semibold flex items-center gap-2 hover:underline"
-            style={{ fontFamily: 'Hind Siliguri, sans-serif' }}
-          >
-            বিস্তারিত দেখুন <span className="material-symbols-outlined">chevron_right</span>
-          </button>
-        </div>
+                {service.features && (
+                  <ul className="mb-6 grid grid-cols-1 sm:grid-cols-2 gap-2 text-gray-600 text-sm">
+                    {service.features.map((f) => (
+                      <li key={f} className="flex items-center gap-2">
+                        <span
+                          className="material-symbols-outlined text-[#0a6c44] text-lg"
+                          style={{ fontVariationSettings: "'FILL' 1" }}
+                        >
+                          check_circle
+                        </span>
+                        {f}
+                      </li>
+                    ))}
+                  </ul>
+                )}
 
-        {/* Service 4: Passport & Visa */}
-        <div className="md:col-span-6 group relative overflow-hidden rounded-xl border-l-4 border-l-[#002045] bg-white border border-gray-200 p-6 transition-all hover:shadow-lg">
-          <div className="flex items-center gap-4 mb-4">
-            <div className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-[#002045]">
-              <span className="material-symbols-outlined">flight_takeoff</span>
+                <div className={service.large ? '' : 'mt-auto'}>
+                  <Link
+                    href={service.link}
+                    className={`inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all duration-300 ${service.btnStyle} ${
+                      service.btnStyle.includes('bg-transparent') ? 'hover:underline px-0' : 'shadow-sm hover:shadow-md hover:-translate-y-0.5'
+                    }`}
+                  >
+                    {service.linkText}
+                    <span className="material-symbols-outlined text-lg">
+                      {service.btnStyle.includes('bg-transparent') ? 'chevron_right' : 'arrow_forward'}
+                    </span>
+                  </Link>
+                </div>
+              </div>
             </div>
-            <h3
-              className="text-xl font-bold text-[#002045]"
-              style={{ fontFamily: 'Hind Siliguri, sans-serif' }}
-            >
-              পাসপোর্ট ও ভিসা
-            </h3>
           </div>
-          <p
-            className="text-gray-600 mb-4"
-            style={{ fontFamily: 'Hind Siliguri, sans-serif' }}
-          >
-            ই-পাসপোর্ট আবেদন, রিনিউয়াল এবং ভিসা সংক্রান্ত সকল তথ্যের জন্য ডিজিটাল পোর্টাল ব্যবহার করুন।
-          </p>
-          <button
-            className="text-[#002045] font-semibold flex items-center gap-2 hover:underline"
-            style={{ fontFamily: 'Hind Siliguri, sans-serif' }}
-          >
-            আবেদন করুন <span className="material-symbols-outlined">chevron_right</span>
-          </button>
-        </div>
+        ))}
       </div>
     </section>
   );

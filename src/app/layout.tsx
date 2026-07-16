@@ -46,6 +46,8 @@ export const viewport: Viewport = {
   ],
 }
 
+import { Providers } from './providers'
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -68,8 +70,10 @@ export default function RootLayout({
         className={`${hindSiliguri.className} bg-white text-gray-900 antialiased`}
         suppressHydrationWarning
       >
-        {children}
-        {process.env.NODE_ENV === 'production' && <Analytics />}
+        <Providers>
+          {children}
+          {process.env.NODE_ENV === 'production' && <Analytics />}
+        </Providers>
       </body>
     </html>
   )
