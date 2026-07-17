@@ -70,12 +70,12 @@ export default function ServicesPage() {
                   <span className="material-symbols-outlined text-blue-600">filter_list</span>
                   Categories
                 </h3>
-                <div className="mt-6 flex flex-col gap-2">
+                <div className="mt-6 flex flex-row lg:flex-col gap-2 overflow-x-auto lg:overflow-x-visible pb-3 lg:pb-0 scrollbar-none">
                   {categories.map((category) => (
                     <button
                       key={category}
                       onClick={() => setSelectedCategory(category)}
-                      className={`block w-full rounded-xl px-5 py-3 text-left capitalize transition-all duration-200 font-medium ${
+                      className={`shrink-0 lg:w-full rounded-xl px-5 py-3 text-center lg:text-left capitalize transition-all duration-200 font-medium ${
                         selectedCategory === category
                           ? 'bg-[#002045] text-white shadow-md'
                           : 'text-gray-600 hover:bg-gray-100'

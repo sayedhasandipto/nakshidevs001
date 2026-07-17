@@ -1,75 +1,164 @@
+'use client';
+
+import Link from 'next/link';
+
+const categories = [
+  {
+    title: 'সরকারি আবেদন',
+    desc: 'জন্ম নিবন্ধন, এনআইডি সংশোধন, পাসপোর্ট থেকে শুরু করে সকল সরকারি ফর্ম ফিলআপ।',
+    icon: 'account_balance',
+    href: '/gov-services',
+    tags: ['জন্ম নিবন্ধন', 'NID সেবা', 'পাসপোর্ট', '+১২ আরও'],
+    accent: 'blue',
+    span: 'lg:col-span-7',
+  },
+  {
+    title: 'ব্যবসায়িক সেবা',
+    desc: 'ট্রেড লাইসেন্স, টিআইএন এবং ভ্যাট সংক্রান্ত সকল সমাধান।',
+    icon: 'business_center',
+    href: '/business-solutions',
+    tags: ['ট্রেড লাইসেন্স', 'TIN', 'VAT'],
+    accent: 'emerald',
+    span: 'lg:col-span-5',
+  },
+  {
+    title: 'ওয়েবসাইট ডেভেলপমেন্ট',
+    desc: 'আপনার ব্যবসার জন্য আধুনিক, দ্রুত ও মোবাইল ফ্রেন্ডলি ওয়েবসাইট।',
+    icon: 'code',
+    href: '/web-dev',
+    tags: ['ই-কমার্স', 'পোর্টফোলিও', 'ল্যান্ডিং পেজ'],
+    accent: 'violet',
+    span: 'lg:col-span-5',
+  },
+  {
+    title: 'সার্বক্ষণিক সহায়তা কেন্দ্র',
+    desc: 'আমাদের সাপোর্ট টিম যে কোন জটিলতায় আপনার পাশে আছে।',
+    icon: 'headset_mic',
+    href: '/dashboard/support',
+    tags: [],
+    accent: 'amber',
+    span: 'lg:col-span-7',
+  },
+];
+
+const accentStyles: Record<string, { bg: string; text: string; border: string; glow: string; iconBg: string }> = {
+  blue: {
+    bg: 'group-hover:bg-blue-50',
+    text: 'text-blue-600',
+    border: 'group-hover:border-blue-200',
+    glow: 'bg-blue-500/10',
+    iconBg: 'bg-blue-50 text-blue-600',
+  },
+  emerald: {
+    bg: 'group-hover:bg-emerald-50',
+    text: 'text-emerald-600',
+    border: 'group-hover:border-emerald-200',
+    glow: 'bg-emerald-500/10',
+    iconBg: 'bg-emerald-50 text-emerald-600',
+  },
+  violet: {
+    bg: 'group-hover:bg-violet-50',
+    text: 'text-violet-600',
+    border: 'group-hover:border-violet-200',
+    glow: 'bg-violet-500/10',
+    iconBg: 'bg-violet-50 text-violet-600',
+  },
+  amber: {
+    bg: 'group-hover:bg-amber-50',
+    text: 'text-amber-600',
+    border: 'group-hover:border-amber-200',
+    glow: 'bg-amber-500/10',
+    iconBg: 'bg-amber-50 text-amber-600',
+  },
+};
+
 export default function CategoriesGrid() {
   return (
-    <section className="max-w-6xl mx-auto px-6 mb-16">
-      <div className="flex flex-col md:flex-row justify-between items-end mb-8 gap-4">
-        <div className="max-w-xl">
-          <h2 className="text-3xl font-bold text-[#002045] mb-3" style={{ fontFamily: 'Hind Siliguri, sans-serif' }}>জনপ্রিয় সেবা ক্যাটাগরি</h2>
-          <p className="text-gray-600" style={{ fontFamily: 'Hind Siliguri, sans-serif' }}>আপনার প্রয়োজনীয় সেবাটি সহজেই খুঁজে নিন আমাদের ক্যাটাগরিগুলো থেকে।</p>
-        </div>
-        <a href="/gov-services" className="flex items-center gap-2 text-[#002045] hover:gap-4 transition-all font-semibold" style={{ fontFamily: 'Hind Siliguri, sans-serif' }}>
-          সবগুলো দেখুন <span className="material-symbols-outlined">arrow_forward</span>
-        </a>
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
-        {/* Large Card: Gov Services */}
-        <a href="/gov-services" className="md:col-span-8 bg-white p-8 rounded-3xl border border-gray-200 hover:shadow-lg transition-shadow group">
-          <div className="flex justify-between items-start mb-8">
-            <div className="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center text-[#002045]">
-              <span className="material-symbols-outlined text-5xl">account_balance</span>
-            </div>
-            <span className="material-symbols-outlined text-gray-400 group-hover:text-[#002045] transition-colors">open_in_new</span>
+    <section className="py-16 sm:py-20 px-4 sm:px-6 bg-white">
+      <div className="max-w-6xl mx-auto">
+        {/* Header */}
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-10 sm:mb-12 gap-4">
+          <div className="max-w-xl">
+            <p className="text-sm font-semibold text-blue-600 uppercase tracking-wider mb-2" style={{ fontFamily: 'Hind Siliguri, sans-serif' }}>
+              আমাদের সেবাসমূহ
+            </p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-[#002045]" style={{ fontFamily: 'Hind Siliguri, sans-serif' }}>
+              জনপ্রিয় সেবা ক্যাটাগরি
+            </h2>
+            <p className="text-gray-500 mt-3 text-base leading-relaxed" style={{ fontFamily: 'Hind Siliguri, sans-serif' }}>
+              আপনার প্রয়োজনীয় সেবাটি সহজেই খুঁজে নিন আমাদের ক্যাটাগরিগুলো থেকে।
+            </p>
           </div>
-          <h3 className="text-2xl font-bold text-[#002045] mb-4" style={{ fontFamily: 'Hind Siliguri, sans-serif' }}>সরকারি আবেদন</h3>
-          <p className="text-gray-600 mb-6" style={{ fontFamily: 'Hind Siliguri, sans-serif' }}>জন্ম নিবন্ধন, এনআইডি সংশোধন, পাসপোর্ট থেকে শুরু করে সকল সরকারি ফর্ম ফিলআপে আমরা বিশেষজ্ঞ।</p>
-          <div className="flex flex-wrap gap-3">
-            <span className="px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm" style={{ fontFamily: 'Hind Siliguri, sans-serif' }}>জন্ম নিবন্ধন</span>
-            <span className="px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm" style={{ fontFamily: 'Hind Siliguri, sans-serif' }}>NID সেবা</span>
-            <span className="px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm" style={{ fontFamily: 'Hind Siliguri, sans-serif' }}>পাসপোর্ট আবেদন</span>
-            <span className="px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm" style={{ fontFamily: 'Hind Siliguri, sans-serif' }}>+১२ আরও</span>
-          </div>
-        </a>
-
-        {/* Small Card: Business */}
-        <div className="md:col-span-4 bg-green-50 p-8 rounded-3xl border border-green-200 hover:shadow-lg transition-shadow">
-          <div className="w-12 h-12 bg-[#0a6c44] text-white rounded-xl flex items-center justify-center mb-6">
-            <span className="material-symbols-outlined">business_center</span>
-          </div>
-          <h3 className="text-xl font-bold text-[#002045] mb-3" style={{ fontFamily: 'Hind Siliguri, sans-serif' }}>ব্যবসায়িক সেবা</h3>
-          <p className="text-gray-600 mb-4" style={{ fontFamily: 'Hind Siliguri, sans-serif' }}>ট্রেড লাইসেন্স, টিআইএন এবং ভ্যাট সংক্রান্ত সকল সমাধান।</p>
-          <a className="text-[#0a6c44] inline-flex items-center gap-2 font-semibold hover:gap-3 transition-all" href="/business-solutions" style={{ fontFamily: 'Hind Siliguri, sans-serif' }}>
-            শুরু করুন <span className="material-symbols-outlined text-lg">chevron_right</span>
-          </a>
+          <Link
+            href="/gov-services"
+            className="flex items-center gap-2 text-[#002045] hover:gap-3 transition-all font-semibold text-sm group shrink-0"
+            style={{ fontFamily: 'Hind Siliguri, sans-serif' }}
+          >
+            সবগুলো দেখুন
+            <span className="material-symbols-outlined text-lg group-hover:translate-x-1 transition-transform">arrow_forward</span>
+          </Link>
         </div>
 
-        {/* Small Card: Web Dev */}
-        <div className="md:col-span-4 bg-blue-50 p-8 rounded-3xl border border-blue-200 hover:shadow-lg transition-shadow">
-          <div className="w-12 h-12 bg-[#002045] text-white rounded-xl flex items-center justify-center mb-6">
-            <span className="material-symbols-outlined">code</span>
-          </div>
-          <h3 className="text-xl font-bold text-[#002045] mb-3" style={{ fontFamily: 'Hind Siliguri, sans-serif' }}>ওয়েবসাইট ডেভেলপমেন্ট</h3>
-          <p className="text-gray-600 mb-4" style={{ fontFamily: 'Hind Siliguri, sans-serif' }}>আপনার ব্যবসার জন্য আধুনিক ও দ্রুত ওয়েবসাইট।</p>
-          <a className="text-[#002045] inline-flex items-center gap-2 font-semibold hover:gap-3 transition-all" href="/web-dev" style={{ fontFamily: 'Hind Siliguri, sans-serif' }}>
-            বিস্তারিত <span className="material-symbols-outlined text-lg">chevron_right</span>
-          </a>
-        </div>
+        {/* Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
+          {categories.map((cat) => {
+            const style = accentStyles[cat.accent];
+            return (
+              <Link
+                key={cat.title}
+                href={cat.href}
+                className={`${cat.span} group relative bg-white p-6 sm:p-8 rounded-2xl border border-gray-200/80 hover:shadow-xl hover:-translate-y-1 transition-all duration-500 overflow-hidden block`}
+              >
+                {/* Hover glow */}
+                <div className={`absolute top-0 right-0 w-48 h-48 ${style.glow} rounded-full blur-3xl opacity-0 group-hover:opacity-60 transition-opacity duration-700 -translate-y-8 translate-x-8`} />
 
-        {/* Large Card: Support */}
-        <div className="md:col-span-8 bg-white p-8 rounded-3xl border border-gray-200 flex flex-col md:flex-row items-center gap-6 hover:shadow-lg transition-shadow">
-          <div className="flex-1">
-            <h3 className="text-xl font-bold text-[#002045] mb-3" style={{ fontFamily: 'Hind Siliguri, sans-serif' }}>সার্বক্ষণিক সহায়তা কেন্দ্র</h3>
-            <p className="text-gray-600 mb-4" style={{ fontFamily: 'Hind Siliguri, sans-serif' }}>আমাদের সাপোর্ট টিম যে কোন জটিলতায় আপনার পাশে আছে।</p>
-            <button className="px-6 py-2 border-2 border-[#002045] text-[#002045] rounded-lg font-semibold hover:bg-[#002045] hover:text-white transition-all" style={{ fontFamily: 'Hind Siliguri, sans-serif' }}>
-              কল করুন
-            </button>
-          </div>
-          <div className="w-full md:w-1/3 aspect-video rounded-xl overflow-hidden">
-            <img
-              className="w-full h-full object-cover"
-              alt="Customer support"
-              src="https://images.unsplash.com/photo-1714079761488-e0c9b9ac4138?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            />
-          </div>
+                <div className="relative z-10">
+                  {/* Icon & Arrow */}
+                  <div className="flex justify-between items-start mb-6">
+                    <div className={`w-14 h-14 ${style.iconBg} rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
+                      <span className="material-symbols-outlined text-3xl">{cat.icon}</span>
+                    </div>
+                    <span className={`material-symbols-outlined text-gray-300 ${style.text} opacity-0 group-hover:opacity-100 translate-x-2 group-hover:translate-x-0 transition-all duration-300`}>
+                      north_east
+                    </span>
+                  </div>
+
+                  {/* Title & Desc */}
+                  <h3 className="text-xl font-bold text-[#002045] mb-2 group-hover:text-[#002045]" style={{ fontFamily: 'Hind Siliguri, sans-serif' }}>
+                    {cat.title}
+                  </h3>
+                  <p className="text-gray-500 text-sm mb-5 leading-relaxed" style={{ fontFamily: 'Hind Siliguri, sans-serif' }}>
+                    {cat.desc}
+                  </p>
+
+                  {/* Tags */}
+                  {cat.tags.length > 0 && (
+                    <div className="flex flex-wrap gap-2">
+                      {cat.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="px-3.5 py-1.5 bg-gray-50 text-gray-600 rounded-lg text-xs font-medium group-hover:bg-gray-100 transition-colors"
+                          style={{ fontFamily: 'Hind Siliguri, sans-serif' }}
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* CTA for support card */}
+                  {cat.tags.length === 0 && (
+                    <span className={`inline-flex items-center gap-2 ${style.text} font-semibold text-sm group-hover:gap-3 transition-all`}
+                      style={{ fontFamily: 'Hind Siliguri, sans-serif' }}
+                    >
+                      কল করুন
+                      <span className="material-symbols-outlined text-lg">chevron_right</span>
+                    </span>
+                  )}
+                </div>
+              </Link>
+            );
+          })}
         </div>
       </div>
     </section>

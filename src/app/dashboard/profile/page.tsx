@@ -47,7 +47,7 @@ export default function ProfilePage() {
           </div>
 
           <div className="pt-4 flex justify-end">
-            <Button variant="solid" color="primary" className="bg-[#002045] font-medium">
+            <Button variant="primary" className="bg-[#002045] font-medium">
               Save Changes
             </Button>
           </div>

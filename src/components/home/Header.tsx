@@ -35,19 +35,19 @@ export default function Header() {
 
         <nav className="hidden lg:flex items-center gap-4">
           <Link href="/">
-            <Button variant="ghost">Home</Button>
+            <Button variant="ghost">হোম</Button>
           </Link>
           <Link href="/gov-services">
-            <Button variant="ghost">Gov Services</Button>
+            <Button variant="ghost">সরকারি সেবা</Button>
           </Link>
           <Link href="/business-solutions">
-            <Button variant="ghost">Business Solutions</Button>
+            <Button variant="ghost">ব্যবসায়িক সমাধান</Button>
           </Link>
           <Link href="/web-dev">
-            <Button variant="ghost">Web Dev</Button>
+            <Button variant="ghost">ওয়েব ডেভেলপমেন্ট</Button>
           </Link>
           <Link href="/about">
-            <Button variant="ghost">About</Button>
+            <Button variant="ghost">আমাদের সম্পর্কে</Button>
           </Link>
         </nav>
 
@@ -56,22 +56,22 @@ export default function Header() {
             <div className="h-10 w-10 animate-pulse rounded-full bg-gray-200"></div>
           ) : session ? (
             <div className="flex items-center gap-3">
-              <Link href="/dashboard" title="Go to Dashboard">
+              <Link href="/dashboard" title="ড্যাশবোর্ড">
                 <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-blue-600 to-indigo-600 cursor-pointer hover:shadow-lg transition-all">
                   <span className="text-white font-bold">{firstInitial}</span>
                 </div>
               </Link>
               <Button variant="ghost" onClick={handleLogout} className="hidden md:flex">
-                Log Out
+                লগ আউট
               </Button>
             </div>
           ) : (
             <>
               <Button variant="ghost">
-                <Link href="/auth/login">Login</Link>
+                <Link href="/auth/login">লগইন</Link>
               </Button>
               <Button variant="primary">
-                <Link href="/auth/signup">Sign Up</Link>
+                <Link href="/auth/signup">নিবন্ধন করুন</Link>
               </Button>
             </>
           )}
@@ -94,23 +94,23 @@ export default function Header() {
       >
         <div className="flex flex-col px-6 py-4 space-y-4 bg-gray-50">
           <Link href="/">
-            <Button variant="ghost" className="w-full justify-start">Home</Button>
+            <Button variant="ghost" className="w-full justify-start">হোম</Button>
           </Link>
           <Link href="/gov-services">
-            <Button variant="ghost" className="w-full justify-start">Gov Services</Button>
+            <Button variant="ghost" className="w-full justify-start">সরকারি সেবা</Button>
           </Link>
           <Link href="/business-solutions">
-            <Button variant="ghost" className="w-full justify-start">Business Solutions</Button>
+            <Button variant="ghost" className="w-full justify-start">ব্যবসায়িক সমাধান</Button>
           </Link>
           <Link href="/web-dev">
-            <Button variant="ghost" className="w-full justify-start">Web Dev</Button>
+            <Button variant="ghost" className="w-full justify-start">ওয়েব ডেভেলপমেন্ট</Button>
           </Link>
           <Link href="/about">
-            <Button variant="ghost" className="w-full justify-start">About</Button>
+            <Button variant="ghost" className="w-full justify-start">আমাদের সম্পর্কে</Button>
           </Link>
           {session && (
             <Button variant="ghost" className="w-full justify-start text-red-600" onClick={handleLogout}>
-              Log Out
+              লগ আউট
             </Button>
           )}
         </div>
