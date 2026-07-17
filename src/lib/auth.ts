@@ -55,6 +55,11 @@ export const auth = betterAuth({
   // ── Security ──────────────────────────────────────────────────────────
   secret: process.env.BETTER_AUTH_SECRET!,
   baseURL: process.env.BETTER_AUTH_URL ?? process.env.NEXT_PUBLIC_APP_URL,
+  trustedOrigins: [
+    'http://localhost:3000',
+    process.env.NEXT_PUBLIC_APP_URL || '',
+    process.env.BETTER_AUTH_URL || '',
+  ].filter(Boolean),
 });
 
 // ─── Type Export ─────────────────────────────────────────────────────────

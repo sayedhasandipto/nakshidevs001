@@ -15,10 +15,14 @@ export async function POST(request: Request) {
       );
     }
 
+    const { signJWT } = await import('@/lib/jwt');
+    const cookieStore = await cookies();
+
+    // Check if it's admin
     if (email === adminEmail && password === adminPassword) {
-      // Create a secure cookie for the admin session
-      const cookieStore = await cookies();
-      cookieStore.set('admin_session', 'authenticated', {
+      const token = await signJWT({ email, role: 'admin' });
+
+      cookieStore.set('admin_session', token, {
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production',
         sameSite: 'strict',
@@ -26,13 +30,22 @@ export async function POST(request: Request) {
         path: '/',
       });
 
-      return NextResponse.json({ success: true }, { status: 200 });
-    }
+      return NextResponse.json({ success: true, role: 'admin' }, { status: 200 });
+    } else {
+      // If not admin, treat as regular user
+      // Note: You should verify the user's password against a database here!
+      const token = await signJWT({ email, role: 'user' });
 
-    return NextResponse.json(
-      { error: 'Invalid admin credentials' },
-      { status: 401 }
-    );
+      cookieStore.set('user_session', token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'strict',
+        maxAge: 60 * 60 * 24 * 7, // 1 week
+        path: '/',
+      });
+
+      return NextResponse.json({ success: true, role: 'user' }, { status: 200 });
+    }
   } catch (error) {
     return NextResponse.json(
       { error: 'Internal Server Error' },

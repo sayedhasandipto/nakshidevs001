@@ -2,6 +2,7 @@ import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import Sidebar from '@/components/admin/Sidebar';
 import Navbar from '@/components/admin/Navbar';
+import { verifyJWT } from '@/lib/jwt';
 
 export default async function AdminDashboardLayout({
   children,
@@ -11,7 +12,12 @@ export default async function AdminDashboardLayout({
   const cookieStore = await cookies();
   const session = cookieStore.get('admin_session');
 
-  if (!session || session.value !== 'authenticated') {
+  if (!session) {
+    redirect('/admin/login');
+  }
+
+  const payload = await verifyJWT(session.value);
+  if (!payload || payload.role !== 'admin') {
     redirect('/admin/login');
   }
 

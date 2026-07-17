@@ -27,18 +27,41 @@ export default function Login() {
     setLoading(true);
     setError('');
 
+    const ADMIN_EMAIL = 'admin@servicehub.com';
+
     try {
-      const { error: authError } = await authClient.signIn.email({
-        email: formData.email,
-        password: formData.password,
-        callbackURL: '/dashboard',
-      });
+      if (formData.email.trim() === ADMIN_EMAIL) {
+        // Route through admin login API
+        const res = await fetch('/api/admin/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            email: formData.email,
+            password: formData.password,
+          }),
+        });
 
-      if (authError) {
-        throw new Error(authError.message ?? 'Failed to sign in');
+        const data = await res.json();
+        if (!res.ok) {
+          throw new Error(data.error || 'Failed to login as admin');
+        }
+
+        router.push('/admin');
+        router.refresh();
+      } else {
+        // Normal user login via better-auth
+        const { error: authError } = await authClient.signIn.email({
+          email: formData.email,
+          password: formData.password,
+          callbackURL: '/dashboard',
+        });
+
+        if (authError) {
+          throw new Error(authError.message ?? 'Failed to sign in');
+        }
+
+        router.push('/dashboard');
       }
-
-      router.push('/dashboard');
     } catch (err: any) {
       setError(err.message ?? 'Something went wrong. Please try again.');
     } finally {

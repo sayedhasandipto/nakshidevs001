@@ -1,12 +1,28 @@
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+import { cookies } from 'next/headers';
 
 export async function fetchAdminData(endpoint: string) {
   try {
-    // Add no-store cache to always fetch the latest data for admin panel
-    const res = await fetch(`${API_URL}/api/admin${endpoint}`, { cache: 'no-store' });
-    
+    const baseUrl =
+      process.env.NEXT_PUBLIC_APP_URL ||
+      (typeof window === 'undefined' ? 'http://localhost:3000' : '');
+
+    // Forward the admin_session cookie so server-side JWT verification works
+    const cookieStore = await cookies();
+    const adminSession = cookieStore.get('admin_session');
+    const cookieHeader = adminSession
+      ? `admin_session=${adminSession.value}`
+      : '';
+
+    const res = await fetch(`${baseUrl}/api/admin${endpoint}`, {
+      cache: 'no-store',
+      headers: {
+        Cookie: cookieHeader,
+      },
+    });
+
     if (!res.ok) {
-      throw new Error(`Failed to fetch data: ${res.statusText}`);
+      console.error(`fetchAdminData: ${endpoint} → ${res.status} ${res.statusText}`);
+      return null;
     }
 
     const json = await res.json();

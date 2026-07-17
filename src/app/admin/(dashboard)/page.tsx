@@ -20,27 +20,27 @@ export default function AdminDashboard() {
   const [recentOrders, setRecentOrders] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
-  const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+  const API_URL = '';
 
   const fetchData = async () => {
     try {
       setLoading(true);
       // Fetch stats
-      const statsRes = await fetch(`${API_URL}/api/admin/stats`);
+      const statsRes = await fetch(`/api/admin/stats`);
       if (statsRes.ok) {
         const json = await statsRes.json();
         setStats(json.data || []);
       }
 
       // Fetch chart data
-      const chartRes = await fetch(`${API_URL}/api/admin/revenue-chart`);
+      const chartRes = await fetch(`/api/admin/revenue-chart`);
       if (chartRes.ok) {
         const json = await chartRes.json();
         setChartData(json.data || []);
       }
 
       // Fetch recent orders for activity
-      const ordersRes = await fetch(`${API_URL}/api/admin/orders`);
+      const ordersRes = await fetch(`/api/admin/orders`);
       if (ordersRes.ok) {
         const json = await ordersRes.json();
         setRecentOrders(json.data?.slice(0, 5) || []);
