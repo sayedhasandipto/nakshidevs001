@@ -244,7 +244,7 @@ export default function HeroSection() {
             {['জন্ম নিবন্ধন', 'NID সংশোধন', 'পাসপোর্ট', 'ওয়েবসাইট'].map((tag) => (
               <button
                 key={tag}
-                onClick={() => { setQuery(tag); setShowDropdown(true); }}
+                onClick={() => router.push(`/services?search=${encodeURIComponent(tag)}`)}
                 className="px-3.5 py-1.5 bg-white/[0.05] hover:bg-white/[0.1] border border-white/[0.06] text-white/50 hover:text-white/80 rounded-lg text-xs transition-all duration-200"
                 style={{ fontFamily: 'Hind Siliguri, sans-serif' }}
               >
