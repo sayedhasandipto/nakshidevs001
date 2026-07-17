@@ -4,7 +4,7 @@ export async function fetchAdminData(endpoint: string) {
   try {
     const baseUrl =
       process.env.NEXT_PUBLIC_APP_URL ||
-      (typeof window === 'undefined' ? 'http://localhost:3000' : '');
+      (typeof window === 'undefined' ? (process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000') : '');
 
     // Forward the admin_session cookie so server-side JWT verification works
     const cookieStore = await cookies();
