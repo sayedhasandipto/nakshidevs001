@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import { Clock, CheckCircle, XCircle, RefreshCw, Check, X, Loader } from 'lucide-react';
+import { Clock, CheckCircle, XCircle, RefreshCw, Check, X, Loader } from 'react-icons/lu';
 import toast from 'react-hot-toast';
 
 interface Order {

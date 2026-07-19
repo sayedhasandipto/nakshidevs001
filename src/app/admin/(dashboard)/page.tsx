@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Users, Briefcase, ShoppingCart, TrendingUp } from 'lucide-react';
+import { Users, Briefcase, ShoppingCart, TrendingUp } from 'react-icons/lu';
 import { 
   ResponsiveContainer, 
   AreaChart, 

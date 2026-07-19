@@ -1,6 +1,7 @@
 'use client';
 
 import { use, useState, useEffect } from 'react';
+import { LuStar, LuCheckCircle2, LuClock, LuArrowRight, LuInfo } from 'react-icons/lu';
 import Header from '@/components/home/Header';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -136,9 +137,7 @@ export default function ServiceDetailPage({ params }: { params: Promise<{ id: st
                 <div className="mb-8 flex items-center gap-8 border-b border-gray-100 pb-8">
                   <div>
                     <p className="text-sm font-medium text-gray-500 uppercase tracking-wide">Rating</p>
-                    <p className="text-2xl font-bold text-amber-500 mt-1 flex items-center gap-1">
-                      {service.rating} <span className="text-lg">★</span>
-                    </p>
+                      {service.rating} <LuStar className="inline-block text-amber-500 fill-current w-5 h-5 ml-1 shrink-0" />
                   </div>
                   <div className="w-px h-12 bg-gray-100"></div>
                   <div>
@@ -164,9 +163,7 @@ export default function ServiceDetailPage({ params }: { params: Promise<{ id: st
                     <div className="grid gap-4 md:grid-cols-2">
                       {service.features.map((feature: string, i: number) => (
                          <div key={i} className="flex items-start gap-3 p-4 bg-gray-50 rounded-xl">
-                           <span className="material-symbols-outlined text-[#0a6c44] shrink-0" style={{ fontVariationSettings: "'FILL' 1" }}>
-                             check_circle
-                           </span>
+                           <LuCheckCircle2 className="text-[#0a6c44] shrink-0 w-5 h-5" />
                            <p className="text-gray-700 font-medium">{feature}</p>
                          </div>
                       ))}
@@ -186,7 +183,7 @@ export default function ServiceDetailPage({ params }: { params: Promise<{ id: st
                         {service.providerId.name}
                       </h3>
                       <p className="text-sm text-gray-600 mt-1 font-medium">
-                        <span className="text-amber-500 font-bold">{service.providerId.rating}★</span> ({service.providerId.reviews} reviews)
+                        <span className="text-amber-500 font-bold flex items-center gap-1">{service.providerId.rating} <LuStar className="text-amber-500 fill-current w-4 h-4 shrink-0" /></span> ({service.providerId.reviews} reviews)
                       </p>
                       {service.providerId.bio && (
                         <p className="mt-2 text-sm text-gray-600">
@@ -209,7 +206,7 @@ export default function ServiceDetailPage({ params }: { params: Promise<{ id: st
                     ৳{service.price}
                   </p>
                   <div className="flex items-center gap-2 mt-4 text-sm font-medium text-gray-600 bg-gray-50 p-3 rounded-lg border border-gray-100">
-                    <span className="material-symbols-outlined text-gray-400">schedule</span>
+                    <LuClock className="text-gray-400 w-5 h-5 shrink-0" />
                     Delivery: {service.duration}
                   </div>
 
@@ -221,7 +218,7 @@ export default function ServiceDetailPage({ params }: { params: Promise<{ id: st
                     {isOrdering ? (
                       <>Processing...</>
                     ) : (
-                      <>Proceed to Order <span className="material-symbols-outlined text-lg">arrow_forward</span></>
+                      <>Proceed to Order <LuArrowRight className="inline-block text-lg w-5 h-5 ml-1 shrink-0" /></>
                     )}
                   </button>
 
@@ -233,7 +230,7 @@ export default function ServiceDetailPage({ params }: { params: Promise<{ id: st
                 {/* How It Works */}
                 <div className="rounded-2xl bg-gradient-to-br from-indigo-50 to-blue-50 border border-blue-100 p-8">
                   <h3 className="mb-6 font-bold text-gray-900 flex items-center gap-2">
-                    <span className="material-symbols-outlined text-blue-600">info</span>
+                    <LuInfo className="text-blue-600 w-5 h-5 shrink-0" />
                     How It Works
                   </h3>
                   <ol className="space-y-4 text-sm font-medium text-gray-700">

@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { authClient } from '@/lib/auth-client';
-import { User, ShieldCheck, Mail, Lock, Eye, EyeOff, ArrowRight, Home, Wrench, Building2, UserCircle2 } from 'lucide-react';
+import { User, ShieldCheck, Mail, Lock, Eye, EyeOff, ArrowRight, Home, Wrench, Building2, UserCircle2 } from 'react-icons/lu';
 
 const ROLES = [
   { value: 'client', label: 'গ্রাহক (Client)', icon: UserCircle2, desc: 'Looking for services' },

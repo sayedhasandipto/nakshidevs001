@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Button } from '@heroui/react';
 import { useSession, signOut } from '@/lib/auth-client';
 import { useRouter } from 'next/navigation';
+import { HiMenu, HiX } from "react-icons/hi";
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -80,9 +81,11 @@ export default function Header() {
             className="lg:hidden p-2 text-gray-600 hover:text-[#002045] focus:outline-none"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
-            <span className="material-symbols-outlined">
-              {mobileMenuOpen ? 'close' : 'menu'}
-            </span>
+            {mobileMenuOpen ? (
+              <HiX className="h-6 w-6" />
+            ) : (
+              <HiMenu className="h-6 w-6" />
+            )}
           </button>
         </div>
       </div>
@@ -115,6 +118,6 @@ export default function Header() {
           )}
         </div>
       </div>
-    </header>
+    </header >
   );
 }

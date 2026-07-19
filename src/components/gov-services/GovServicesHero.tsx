@@ -1,3 +1,5 @@
+import { LuFlag } from 'react-icons/lu';
+
 export default function GovServicesHero() {
   return (
     <section className="relative bg-gradient-to-br from-[#001830] via-[#002045] to-[#0a1628] py-24 px-6 overflow-hidden">
@@ -6,8 +8,8 @@ export default function GovServicesHero() {
       <div className="absolute bottom-0 right-1/3 w-80 h-80 bg-emerald-500/8 rounded-full blur-3xl pointer-events-none" />
 
       <div className="relative max-w-4xl mx-auto text-center">
-        <span className="inline-block bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-sm font-semibold px-5 py-2 rounded-full mb-6 tracking-wide">
-          🇧🇩 সরকারি সেবা পোর্টাল
+        <span className="inline-flex items-center gap-2 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-sm font-semibold px-5 py-2 rounded-full mb-6 tracking-wide">
+          <LuFlag className="w-4 h-4" /> সরকারি সেবা পোর্টাল
         </span>
         <h1 className="text-4xl md:text-6xl font-extrabold text-white leading-tight mb-6">
           নাগরিক সেবা

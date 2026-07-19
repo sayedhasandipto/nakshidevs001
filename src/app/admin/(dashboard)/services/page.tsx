@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Plus, Edit3, Trash2, X } from 'lucide-react';
+import { Plus, Edit3, Trash2, X } from 'react-icons/lu';
 import toast from 'react-hot-toast';
 
 export default function AdminServices() {

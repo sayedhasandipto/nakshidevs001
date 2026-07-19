@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { LuFilter, LuCheckCircle2, LuClock, LuSearchCode, LuStar } from 'react-icons/lu';
 import Header from '@/components/home/Header';
 import Link from 'next/link';
 
@@ -67,7 +68,7 @@ export default function ServicesPage() {
             <div className="sticky top-24 space-y-8 bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
               <div>
                 <h3 className="text-xl font-bold text-[#002045] flex items-center gap-2">
-                  <span className="material-symbols-outlined text-blue-600">filter_list</span>
+                  <LuFilter className="text-blue-600 w-5 h-5" />
                   Categories
                 </h3>
                 <div className="mt-6 flex flex-row lg:flex-col gap-2 overflow-x-auto lg:overflow-x-visible pb-3 lg:pb-0 scrollbar-none">
@@ -128,7 +129,7 @@ export default function ServicesPage() {
                         <div className="mt-6 space-y-3">
                           {service.features.slice(0, 3).map((feature: string, i: number) => (
                             <div key={i} className="flex items-center space-x-3 text-sm text-gray-700 font-medium">
-                              <span className="material-symbols-outlined text-[#0a6c44] text-lg" style={{ fontVariationSettings: "'FILL' 1" }}>check_circle</span>
+                               <LuCheckCircle2 className="text-[#0a6c44] text-lg w-5 h-5 shrink-0" />
                               <span>{feature}</span>
                             </div>
                           ))}
@@ -140,12 +141,12 @@ export default function ServicesPage() {
                           <div>
                             <p className="text-3xl font-extrabold text-[#002045]">৳{service.price}</p>
                             <p className="text-sm font-medium text-gray-500 mt-1 flex items-center gap-1">
-                               <span className="material-symbols-outlined text-sm">schedule</span> {service.duration}
+                               <LuClock className="text-sm w-4 h-4 shrink-0" /> {service.duration}
                             </p>
                           </div>
                           <div className="text-right">
                             <p className="text-xl font-bold text-amber-500 flex items-center gap-1 justify-end">
-                              {service.rating} <span>★</span>
+                               {service.rating} <LuStar className="text-amber-500 fill-current w-5 h-5 inline-block shrink-0 ml-1" />
                             </p>
                             <p className="text-xs font-medium text-gray-500 mt-1">{service.reviews} reviews</p>
                           </div>
@@ -167,7 +168,7 @@ export default function ServicesPage() {
             {!isLoading && filteredServices.length === 0 && (
               <div className="rounded-2xl border border-gray-100 bg-white p-16 text-center shadow-sm">
                 <div className="w-20 h-20 bg-gray-50 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <span className="material-symbols-outlined text-4xl text-gray-400">search_off</span>
+                   <LuSearchCode className="text-4xl text-gray-400 w-12 h-12" />
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-2">No Services Found</h3>
                 <p className="text-gray-500">There are currently no services available in this category.</p>

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Header from '@/components/home/Header';
 import FaqAccordion from '@/components/about/FaqAccordion';
+import { LuTrophy, LuSmile, LuZap, LuShield, LuTarget, LuLock, LuRocket, LuBuilding } from 'react-icons/lu';
 
 export const metadata: Metadata = {
   title: 'About Us | GovService BD',
@@ -9,10 +10,10 @@ export const metadata: Metadata = {
 };
 
 const stats = [
-  { value: '500+', label: 'Projects Completed', icon: '🏆' },
-  { value: '200+', label: 'Happy Clients', icon: '😊' },
-  { value: '5+', label: 'Years Experience', icon: '⚡' },
-  { value: '24/7', label: 'Support Available', icon: '🛡️' },
+  { value: '500+', label: 'Projects Completed', icon: LuTrophy, iconColor: 'text-yellow-500' },
+  { value: '200+', label: 'Happy Clients', icon: LuSmile, iconColor: 'text-pink-500' },
+  { value: '5+', label: 'Years Experience', icon: LuZap, iconColor: 'text-amber-500' },
+  { value: '24/7', label: 'Support Available', icon: LuShield, iconColor: 'text-blue-500' },
 ];
 
 const team = [
@@ -40,10 +41,10 @@ const team = [
 ];
 
 const values = [
-  { icon: '🎯', title: 'Client-First', desc: 'Every decision guided by what delivers the most value to our clients.' },
-  { icon: '⚡', title: 'Speed & Quality', desc: 'Delivered on time without compromising the quality that sets our work apart.' },
-  { icon: '🔐', title: 'Trust & Transparency', desc: 'Open communication and honest pricing — no hidden fees, no surprises.' },
-  { icon: '🚀', title: 'Innovation-Driven', desc: 'Modern technologies building future-proof digital solutions.' },
+  { icon: LuTarget, iconColor: 'text-red-500', title: 'Client-First', desc: 'Every decision guided by what delivers the most value to our clients.' },
+  { icon: LuZap, iconColor: 'text-amber-500', title: 'Speed & Quality', desc: 'Delivered on time without compromising the quality that sets our work apart.' },
+  { icon: LuLock, iconColor: 'text-blue-500', title: 'Trust & Transparency', desc: 'Open communication and honest pricing — no hidden fees, no surprises.' },
+  { icon: LuRocket, iconColor: 'text-indigo-500', title: 'Innovation-Driven', desc: 'Modern technologies building future-proof digital solutions.' },
 ];
 
 const services = [
@@ -65,8 +66,8 @@ export default function AboutPage() {
           <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
           <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-indigo-500/10 rounded-full blur-3xl pointer-events-none" />
           <div className="relative max-w-4xl mx-auto text-center">
-            <span className="inline-block bg-blue-500/10 text-blue-400 border border-blue-500/20 text-sm font-semibold px-5 py-2 rounded-full mb-8 tracking-wide">
-              🏢 About GovService BD
+            <span className="inline-flex items-center gap-2 bg-blue-500/10 text-blue-400 border border-blue-500/20 text-sm font-semibold px-5 py-2 rounded-full mb-8 tracking-wide">
+              <LuBuilding className="w-4 h-4" /> About GovService BD
             </span>
             <h1 className="text-4xl md:text-6xl font-extrabold text-white leading-tight mb-6">
               Building the Future of
@@ -102,7 +103,9 @@ export default function AboutPage() {
                 key={stat.label}
                 className="bg-white rounded-2xl p-6 text-center shadow-sm border border-gray-100 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group cursor-default"
               >
-                <div className="text-3xl mb-2 group-hover:scale-110 transition-transform duration-200">{stat.icon}</div>
+                <div className="flex justify-center mb-2">
+                  <stat.icon className={`w-8 h-8 group-hover:scale-110 transition-transform duration-200 ${stat.iconColor}`} />
+                </div>
                 <p className="text-3xl md:text-4xl font-extrabold text-[#002045] mb-1">{stat.value}</p>
                 <p className="text-gray-500 text-sm font-medium">{stat.label}</p>
               </div>
@@ -174,7 +177,9 @@ export default function AboutPage() {
                   key={value.title}
                   className="bg-white p-7 rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group cursor-default"
                 >
-                  <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-200">{value.icon}</div>
+                  <div className="flex mb-4">
+                    <value.icon className={`w-10 h-10 group-hover:scale-110 transition-transform duration-200 ${value.iconColor}`} />
+                  </div>
                   <h3 className="text-lg font-bold text-[#002045] mb-2">{value.title}</h3>
                   <p className="text-gray-500 text-sm leading-relaxed">{value.desc}</p>
                 </div>
@@ -225,8 +230,8 @@ export default function AboutPage() {
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-500/5 rounded-full blur-3xl" />
           </div>
           <div className="relative max-w-3xl mx-auto text-center">
-            <span className="inline-block bg-blue-500/10 text-blue-400 border border-blue-500/20 text-sm font-semibold px-5 py-2 rounded-full mb-6">
-              🚀 Ready to get started?
+            <span className="inline-flex items-center gap-2 bg-blue-500/10 text-blue-400 border border-blue-500/20 text-sm font-semibold px-5 py-2 rounded-full mb-6">
+              <LuRocket className="w-4 h-4" /> Ready to get started?
             </span>
             <h2 className="text-3xl md:text-5xl font-extrabold text-white mb-5 leading-tight">
               Let&apos;s Build Something<br />

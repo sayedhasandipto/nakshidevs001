@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import { Search, Shield, User, Plus, X, Eye, EyeOff, RefreshCw, Trash2, AlertTriangle } from 'lucide-react';
+import { Search, Shield, User, Plus, X, Eye, EyeOff, RefreshCw, Trash2, AlertTriangle } from 'react-icons/lu';
 import toast from 'react-hot-toast';
 
 interface UserData {

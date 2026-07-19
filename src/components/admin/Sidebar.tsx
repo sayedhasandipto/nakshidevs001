@@ -9,7 +9,7 @@ import {
   ShoppingCart, 
   Settings,
   LogOut
-} from 'lucide-react';
+} from 'react-icons/lu';
 import { useRouter } from 'next/navigation';
 
 export default function Sidebar() {
